@@ -1,14 +1,15 @@
-初次載入專案：執行 npm install
+# Description
 
-前端：
-語言：JavaScript
-檔案路徑：client/index.html
+網路服務程式設計 - 期末專題
 
----
+- 套件管理工具：npm
+- 初始化套件工具：npm install
+- 啟動前端環境：npm run client
+- 啟動後端環境：npm run server
 
-後端 ：
-語言：JavaScript(node.js)
-檔案路徑：server/index.js
+- 前端：HTML, CSS, JavaScript
+- 檔案路徑：client/index.html
 
-啟動 SERVER 指令：npm run server
-框架：Express
+- 後端語言：JavaScript(node.js)
+- 後端框架：Express
+- 檔案路徑：server/index.js
