@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "node": "^20.7.0"
+  },
+  "scripts": {
+    "client": "node client/index.js",
+    "server": "node --watch server/index.js"
+  },
+  "type": "module"
+}
