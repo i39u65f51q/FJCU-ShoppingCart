@@ -1,7 +1,7 @@
 import { OrderModel } from '../model/Order.js';
 import { OrderDto } from '../classes/Order.dto.js';
 
-export class MemberService {
+export class OrderService {
   constructor() {
     this.model = new OrderModel();
   }

@@ -13,3 +13,7 @@
 - 後端語言：JavaScript(node.js)
 - 後端框架：Express
 - 檔案路徑：server/index.js
+
+- API 文件
+  請求路徑：http://localhost:3200/api/
+  ex: http://localhost:3200/api/member/1 取得編號 1 會員資料
