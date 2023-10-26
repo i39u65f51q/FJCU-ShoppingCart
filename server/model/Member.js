@@ -15,12 +15,12 @@ export class MemberModel {
     await this.sql.get();
   }
 
-  async insert(productDto) {
+  async insert(memberDto) {
     const sqlString = ``;
     await this.sql.insert();
   }
 
-  async update(productDto) {
+  async update(memberDto) {
     const sqlString = ``;
     await this.sql.update();
   }

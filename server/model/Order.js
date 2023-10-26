@@ -15,12 +15,12 @@ export class OrderModel {
     await this.sql.get();
   }
 
-  async insert(productDto) {
+  async insert(orderDto) {
     const sqlString = ``;
     await this.sql.insert();
   }
 
-  async update(productDto) {
+  async update(orderDto) {
     const sqlString = ``;
     await this.sql.update();
   }
