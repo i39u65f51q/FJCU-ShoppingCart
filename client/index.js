@@ -1,6 +1,8 @@
-console.log('client');
-//apiUrl: http://localhost:3000/api/
-fetch('http://localhost:3000/api/member').then(async res => {
-  const data = await res.json();
-  console.log(data);
+import { Layout } from './layout/layout.js';
+
+const container = document.querySelector('.container');
+
+window.addEventListener('load', () => {
+  //進入主頁面後判斷是否有Token
+  const layout = new Layout();
 });
