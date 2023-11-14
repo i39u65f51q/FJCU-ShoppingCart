@@ -1,12 +1,11 @@
 import { getProducts, getProduct, addProduct, updateProduct, deleteProduct } from '../lib/fetch.js';
-export class ProductService {
-  constructor() {
-    this.list = [];
 
-    this.init();
-  }
+const list = [];
 
-  async init() {
-    this.list = await getProducts();
-  }
+export async function initialize() {
+  list = await getProduct();
+}
+
+export function getList() {
+  return list;
 }

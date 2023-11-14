@@ -1,13 +1,11 @@
 import { getMembers, getMember, updateMember, addMember, deleteMember } from '../lib/fetch.js';
 
-export class MemberService {
-  constructor() {
-    this.list = [];
+const list = [];
 
-    this.init();
-  }
+export async function initialize() {
+  list = await getMembers();
+}
 
-  async init() {
-    this.list = await getMembers();
-  }
+export function getList() {
+  return list;
 }

@@ -1,8 +1,14 @@
-import { Layout } from './layout/layout.js';
+//1. 檢查LocalStorage是否有Token，無Token導向登入頁面
+//2. 有Token檢查權限，決定使用者顯示UI
+import * as storage from './lib/localstorage.js';
 
-const container = document.querySelector('.container');
-
+//Token驗證
 window.addEventListener('load', () => {
-  //進入主頁面後判斷是否有Token
-  const layout = new Layout();
+  const token = storage.getToken();
+
+  if (token) {
+    window.location = 'page/main/index.html';
+  } else {
+    window.location = 'page/login/index.html';
+  }
 });

@@ -1,13 +1,11 @@
 import { getOrders, getOrder, updateOrder, deleteOrder, addOrder } from '../lib/fetch.js';
 
-export class OrderService {
-  constructor() {
-    this.list = [];
+const list = [];
 
-    this.init();
-  }
+export async function initialize() {
+  list = await getOrders();
+}
 
-  async init() {
-    this.list = await getOrders();
-  }
+export function getList() {
+  return list;
 }
