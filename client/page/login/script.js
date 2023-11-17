@@ -1,8 +1,10 @@
 const form = document.querySelector('.form');
 const register = document.querySelector('.register');
+const pxwd = document.querySelector('.pxwd');
+const account = document.querySelector('.account');
 
 window.addEventListener('load', () => {
-  console.log('登入頁面');
+  reset();
 });
 
 form.addEventListener('submit', e => {
@@ -16,5 +18,11 @@ form.addEventListener('submit', e => {
 
 register.addEventListener('click', e => {
   e.preventDefault();
+  window.location.href = '../register/index.html';
   //註冊帳號密碼
 });
+
+function reset() {
+  account.value = '';
+  pxwd.value = '';
+}
