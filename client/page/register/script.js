@@ -1,3 +1,5 @@
+import { toLogin } from '../common.js';
+
 const account = document.querySelector('.account');
 const pxwd = document.querySelector('.pxwd');
 const username = document.querySelector('.name');
@@ -30,10 +32,6 @@ form.addEventListener('submit', e => {
 
 function isValueOk() {
   return account.value && pxwd.value && username.value && phone.value;
-}
-
-function toLogin() {
-  window.location.href = '../login/index.html';
 }
 
 function reset() {
