@@ -10,9 +10,9 @@
 - 前端：HTML, CSS, JavaScript
 - 檔案路徑：client/index.html
 
-- 後端語言：JavaScript(node.js)
+- 後端語言：TypeScript(node.js)
 - 後端框架：Express
-- 檔案路徑：server/index.js
+- 檔案路徑：server/index.ts
 
 - API 文件
   請求路徑：http://localhost:3200/api/
