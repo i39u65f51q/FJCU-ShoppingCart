@@ -2,7 +2,7 @@ import { getOrders, getOrder, updateOrder, deleteOrder, addOrder } from '../lib/
 
 const list = [];
 
-export async function initialize() {
+export async function fetch() {
   list = await getOrders();
 }
 

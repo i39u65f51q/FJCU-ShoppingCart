@@ -6,7 +6,7 @@ const apiUrl = 'http://localhost:3000/api/';
 export async function getMembers() {
   return await GET(apiUrl + 'member');
 }
-export async function getMember(id) {
+export async function getMember(memberId) {
   return await GET(apiUrl + 'member/' + id);
 }
 export async function addMember(payload) {
@@ -40,7 +40,7 @@ export async function deleteProduct(id) {
 export async function getOrders() {
   return await GET(apiUrl + 'order');
 }
-export async function getOrder(id) {
+export async function getOrder(memberId) {
   return await GET(apiUrl + 'order/' + id);
 }
 export async function addOrder(payload) {

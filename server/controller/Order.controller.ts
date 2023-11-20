@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { OrderModel } from '../model/Order';
+import { OrderDto } from '../dto/Order.dto';
 
 export class OrderController {
   private readonly model: OrderModel;

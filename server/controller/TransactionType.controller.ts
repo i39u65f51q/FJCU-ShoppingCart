@@ -12,9 +12,10 @@ export class TransactionTypeController {
     router.get('/api/transaction', async (req: Request, res: Response) => {
       // const result: TransactionTypeDto[] = await this.model.getAll(); FIXME:
 
-      const mock = [
+      const mock: TransactionTypeDto[] = [
         { id: 1, name: '信用卡' },
         { id: 2, name: '現金' },
+        { id: 3, name: '貨到付款' },
       ];
 
       res.status(200).json({ content: mock });

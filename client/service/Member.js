@@ -2,7 +2,7 @@ import { getMembers, getMember, updateMember, addMember, deleteMember } from '..
 
 const list = [];
 
-export async function initialize() {
+export async function fetch() {
   list = await getMembers();
 }
 

@@ -4,10 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div class="header"></div>
-    <div class="container"></div>
+    <header class="header"></header>
+    <main class="container" style="width: 100%; display: flex">
+      <div
+        class="products-container"
+        style="width: 70%; display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 50px; padding: 1rem"
+      >
+        <!-- 商品 -->
+      </div>
+      <div
+        class="carts-container"
+        style="
+          width: 30%;
+          height: calc(100% - 50px);
+          position: fixed;
+          border-left: 1px solid black;
+          right: 0;
+          top: 50px;
+          display: flex;
+          flex-direction: column;
+        "
+      >
+        <h4 style="width: 100%; text-align: center; margin: 1rem 0">購物車清單</h4>
+        <div
+          class="carts-wrap"
+          style="
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            min-height: 60%;
+            max-height: 60%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+          "
+        >
+          <div
+            class="carts-item"
+            style="
+              width: 100%;
+              padding: 0.5rem;
+              display: flex;
+              align-items: center;
+              justify-content: space-around;
+              background-color: #eee;
+              border-bottom: 1px solid #ddd;
+            "
+          >
+            <span>商品名稱 : 商品A</span><span>數量：1</span><span>總價格：30</span>
+            <div style="display: flex; gap: 0.5rem">
+              <button class="edit">新增數量</button><button class="delete">減少數量</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4>結帳</h4>
+        </div>
+        <!-- 購物車 -->
+      </div>
+    </main>
     <script src="./script.js" type="module"></script>
   </body>
 </html>
