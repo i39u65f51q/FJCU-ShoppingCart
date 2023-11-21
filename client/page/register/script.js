@@ -1,3 +1,4 @@
+//註冊頁面
 import { toLogin } from '../common.js';
 
 const account = document.querySelector('.account');

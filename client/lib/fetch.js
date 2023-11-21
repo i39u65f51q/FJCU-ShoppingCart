@@ -6,7 +6,6 @@ const apiUrl = 'http://localhost:3000/api/';
 export async function checkAuth(payload) {
   return await POST(apiUrl + 'auth', payload);
 }
-
 export async function getMembers() {
   return await GET(apiUrl + 'member');
 }
@@ -45,7 +44,7 @@ export async function getOrders() {
   return await GET(apiUrl + 'order');
 }
 export async function getOrder(memberId) {
-  return await GET(apiUrl + 'order/' + id);
+  return await GET(apiUrl + 'order/' + memberId);
 }
 export async function addOrder(payload) {
   return await POST(apiUrl + 'order', payload);
@@ -55,4 +54,14 @@ export async function updateOrder(payload) {
 }
 export async function deleteOrder(id) {
   return await DELETE(apiUrl + 'order/' + id);
+}
+
+/* 運送方式 */
+export async function getDeliveryMethod() {
+  return await GET(apiUrl + 'delivery');
+}
+
+/* 付款方式 */
+export async function getTransactionType() {
+  return await GET(apiUrl + 'transaction');
 }

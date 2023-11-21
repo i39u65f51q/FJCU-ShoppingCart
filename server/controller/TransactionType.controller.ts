@@ -18,7 +18,7 @@ export class TransactionTypeController {
         { id: 3, name: '貨到付款' },
       ];
 
-      res.status(200).json({ content: mock });
+      res.status(200).json({ success: true, content: mock });
     });
   }
 }

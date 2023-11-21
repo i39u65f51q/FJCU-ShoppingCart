@@ -1,16 +1,3 @@
-export const cartItems = [{ id: 1, name: 'test', price: 22 }];
-
-export function addItems(data) {
-  cartItems.push(data);
-}
-
-export function removeItems(id) {
-  const index = cartItems.findIndex(item => item.id === id);
-  if (index !== -1) {
-    cartItems.splice(index, 1);
-  }
-}
-
 export function toLogin() {
   window.location.href = '../login/index.html';
 }
@@ -29,4 +16,16 @@ export function toRegister() {
 
 export function toManager() {
   window.location.href = '../manager/index.html';
+}
+
+export function toMember() {
+  window.location.href = '../member/index.html';
+}
+
+export function toOrderManager() {
+  window.location.href = '../order-manager/index.html';
+}
+
+export function toProduct() {
+  window.location.href = '../product/index.html';
 }

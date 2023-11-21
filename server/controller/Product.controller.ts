@@ -17,7 +17,7 @@ export class ProductController {
         { id: 4, name: '商品D', price: 23, quantity: 3 },
         { id: 5, name: '商品E', price: 21, quantity: 10 },
       ];
-      res.status(200).json(mock);
+      res.status(200).json({ success: true, content: mock });
     });
     router.post('/api/product', (req: Request, res: Response) => {});
     router.put('/api/product/:productId', (req: Request, res: Response) => {});

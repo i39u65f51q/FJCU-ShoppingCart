@@ -1,7 +1,7 @@
+//登入頁面
 import { toRegister, toMain, toManager } from '../common.js';
 import { checkAuth } from '../../lib/fetch.js';
 import * as storage from '../../lib/localstorage.js';
-import * as AuthService from '../../service/Auth.js';
 import { AUTH_MANAGER, AUTH_USER } from '../../enum/auth.js';
 
 const form = document.querySelector('.form');
@@ -27,7 +27,6 @@ form.addEventListener('submit', async e => {
     password: pxwd.value,
   };
   const res = await checkAuth(payload);
-  console.log(res.content);
   if (!res.success) {
     alert('帳號或密碼輸入錯誤');
     return;
@@ -35,7 +34,7 @@ form.addEventListener('submit', async e => {
   alert('登入成功');
   const auth = res.content.authority;
   storage.setAuth(auth); //會員權限
-  AuthService.setAuth(res.content); //會員資料
+  storage.setMemberId(res.content.id);
   if (auth === AUTH_USER) {
     toMain(); //主頁面
   } else if (auth === AUTH_MANAGER) {

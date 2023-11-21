@@ -1,17 +1,34 @@
-import * as MemberService from '../../service/Member.js';
-import * as OrderService from '../../service/Order.js';
+//使用者商品主頁面
 import * as ProductService from '../../service/Product.js';
+import * as DeliveryMethodService from '../../service/DeliveryMethod.js';
+import * as TransactionTypeService from '../../service/TransactionType.js';
 import { renderUserHeader } from '../../components/header.component.js';
-import { cartItems, toLogin, toManager } from '../common.js';
+import { toLogin, toManager } from '../common.js';
 import * as storage from '../../lib/localstorage.js';
 import { AUTH_MANAGER, AUTH_USER } from '../../enum/auth.js';
 
 const header = document.querySelector('.header');
-const productContainer = document.querySelector('.products-container');
 const cartsWrap = document.querySelector('.carts-wrap');
+const productContainer = document.querySelector('.products-container');
+const sendOrderBtn = document.querySelector('.send-order');
+const addressElement = document.querySelector('.address');
+
+let carts = storage.getCarts() || [];
+
+const orderPayload = {
+  memberId: -1,
+  address: '',
+  status: 1,
+  deliveryId: -1,
+  transactionId: -1,
+  products: [
+    { pId: 1, count: 1, per_price: 10 },
+    { pId: 1, count: 1, per_price: 10 },
+  ],
+  total: -1,
+};
 
 window.addEventListener('load', async () => {
-  //沒有驗證身份，返回登入頁
   const auth = storage.getAuth();
   if (!auth) {
     toLogin();
@@ -26,41 +43,150 @@ window.addEventListener('load', async () => {
   }
 
   header.innerHTML = renderUserHeader();
-  await fetchAll(); //取得API資料
+  await fetchAll();
   //渲染商品
-  ProductService.getList().forEach(product => {
-    productContainer.innerHTML += renderProductItem(product);
-  });
+  renderProducts();
   //渲染購物車
-  const carts = storage.getCarts();
-  if (carts && carts.length !== 0) {
-    carts.forEach(cart => {
-      cartsWrap.innerHTML += renderCartItem(cart);
-    });
+  renderCarts();
+  //渲染付款方式
+  renderTransaction();
+  //渲染運送方式
+  renderDelivery();
+
+  //登出
+  document.querySelector('.logout').addEventListener('click', () => {
+    toLogin();
+    storage.clearAll();
+  });
+});
+
+sendOrderBtn.addEventListener('click', async e => {
+  if (carts.length === 0) {
+    alert('購物車為空');
+    return;
+  }
+
+  orderPayload.memberId = storage.getMemberId() || -1;
+  orderPayload.products = carts.map(cart => ({ pId: cart.id, count: cart.count, per_price: cart.per_price }));
+  orderPayload.address = addressElement.value;
+  console.log(orderPayload);
+  if (confirm('確認是否送出訂單') == true) {
+    if (orderPayload.memberId == -1) {
+      alert('會員編號異常');
+      return;
+    }
+
+    /* TODO: CALL API 新增訂單
+      1. 建立訂單
+      2. 修改商品庫存
+    */
+    storage.clearCarts();
+    carts = [];
+    addressElement.value = '';
+    renderCarts();
+    renderProducts();
   }
 });
+
 /* 商品資料 */
+function renderProducts() {
+  const products = ProductService.getList();
+  products.forEach(product => {
+    productContainer.innerHTML += renderProductItem(product);
+  });
+  //點擊新增商品事件
+  document.querySelectorAll('.add-btn').forEach((btn, index) => {
+    btn.addEventListener('click', e => {
+      const item = products[index];
+      let findIndex = -1;
+      if (carts.length !== 0) {
+        findIndex = carts.findIndex(c => c.id === item.id);
+      }
+      if (findIndex !== -1) {
+        carts[findIndex].count++;
+
+        if (carts[findIndex].count > item.quantity) {
+          alert('超過商品庫存');
+          carts[findIndex].count--;
+          return;
+        }
+      } else {
+        carts.push({
+          id: products[index].id,
+          count: 1,
+          name: products[index].name,
+          per_price: products[index].price,
+        });
+      }
+      storage.setCarts(carts);
+      renderCarts();
+    });
+  });
+}
 function renderProductItem(product) {
   const content = `
-  <div class="item" style="width: 300px; height: auto; border: 1px solid #eee; border-radius:6px; box-shadow:0px 3px 3px rgba(0,0,0,0.5); overflow:hidden;">
+  <div class="product-item" style="width: 300px; height: auto; border: 1px solid #eee; border-radius:6px; box-shadow:0px 3px 3px rgba(0,0,0,0.5); overflow:hidden;">
     <div style="display: block; width: 100%; height: 120px; background-color: gold"></div>
     <div style="width: 100%; display: flex; flex-direction: column; padding: 0.5rem">
       <div><span>商品名稱：</span><span class="name">${product.name}</span></div>
       <div><span>商品價格：</span><span class="price">${product.price}</span></div>
-      <div><span>剩餘數量：</span><span>${product.quantity}</span></div>
-      <div style="display: flex; align-items: center; justify-content: space-between">
-        <div style="width: 100%"><span>加到購物車：</span><span class="count">${1}</span></div>
-        <div style="display: flex; align-items: center; justify-content: center; gap: 0.2rem">
-          <button class="plus" style="width: 20px">+</button>
-          <button class="minus" style="width: 20px">-</button>
-          <button class="confirm" style="width: 70px">新增</button>
-      </div>
+      <div><span>剩餘庫存：</span><span>${product.quantity}</span></div>
+      <button class="add-btn" style="margin-top:0.5rem">新增至購物車</button>
     </div>
   </div>
 </div>`;
   return content;
 }
 /* 購物車項目 */
+function renderCarts() {
+  cartsWrap.innerHTML = '';
+  carts.forEach(cart => {
+    cartsWrap.innerHTML += renderCartItem(cart);
+  });
+
+  //購物車新增數量事件
+  const products = ProductService.getList();
+  document.querySelectorAll('.plus').forEach((btn, index) => {
+    btn.addEventListener('click', e => {
+      const maxQuantity = products.find(p => p.id === carts[index].id).quantity;
+      carts[index].count++;
+      if (carts[index].count > maxQuantity) {
+        alert('新增數量超過商品庫存');
+        carts[index].count--;
+        return;
+      } else {
+        storage.setCarts(carts);
+        renderCarts();
+      }
+    });
+  });
+  //購物車減少數量事件
+  document.querySelectorAll('.minus').forEach((btn, index) => {
+    btn.addEventListener('click', e => {
+      carts[index].count--;
+      if (carts[index].count === 0) {
+        if (confirm('是否移除商品至購物車') == true) {
+          carts.splice(index, 1);
+        } else {
+          carts[index].count++;
+          return;
+        }
+      }
+      storage.setCarts(carts);
+      renderCarts();
+    });
+  });
+  const totalCount = carts.reduce((acc, curr) => {
+    return (acc += curr.count);
+  }, 0);
+  const totalPrice = carts.reduce((acc, curr) => {
+    return (acc += curr.per_price * curr.count);
+  }, 0);
+
+  document.querySelector('.total-count').textContent = totalCount;
+  document.querySelector('.total-price').textContent = totalPrice;
+  orderPayload.total = totalCount;
+}
 function renderCartItem(cartItem) {
   const content = `
   <div class="carts-item"
@@ -73,9 +199,10 @@ function renderCartItem(cartItem) {
       background-color: #eee;
       border-bottom: 1px solid #ddd;
   ">
-    <span>商品名稱 : ${cartItem.name}</span><span>數量：${cartItem.counts}</span><span>總價格：${cartItem.total}</span>
+    <span>商品名稱 : ${cartItem.name}</span><span>數量：${cartItem.count}</span>
+    <span>總價格：${cartItem.per_price * cartItem.count}</span>
     <div style="display: flex; gap: 0.5rem">
-      <button class="edit">新增數量</button><button class="delete">減少數量</button>
+      <button class="plus">新增</button><button class="minus">減少</button>
     </div>
   </div>
   `;
@@ -83,6 +210,34 @@ function renderCartItem(cartItem) {
   return content;
 }
 
+function renderTransaction() {
+  const list = TransactionTypeService.getList();
+  const transactionElement = document.querySelector('#transaction');
+  list.forEach(l => {
+    transactionElement.innerHTML += `<option value="${l.id}">${l.name}</option>`;
+  });
+  transactionElement.addEventListener('change', e => {
+    const value = e.target.value;
+    orderPayload.transactionId = value;
+  });
+}
+
+function renderDelivery() {
+  const list = DeliveryMethodService.getList();
+  const deliveryElement = document.querySelector('#delivery');
+  list.forEach(l => {
+    deliveryElement.innerHTML += `<option value="${l.id}">${l.name}</option>`;
+  });
+  deliveryElement.addEventListener('change', e => {
+    const value = e.target.value;
+    orderPayload.deliveryId = value;
+  });
+}
+
 async function fetchAll() {
-  await ProductService.fetch();
+  const promise = [ProductService.fetch(), TransactionTypeService.fetch(), DeliveryMethodService.fetch()];
+  const result = await Promise.all(promise);
+  console.log(ProductService.getList());
+  console.log(TransactionTypeService.getList());
+  console.log(DeliveryMethodService.getList());
 }

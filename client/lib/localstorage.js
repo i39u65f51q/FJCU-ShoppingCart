@@ -1,5 +1,6 @@
-export const cartsKey = 'carts';
-export const authKey = 'auth';
+const cartsKey = 'carts';
+const authKey = 'auth';
+const memberIdKey = 'memberId';
 
 export function setCarts(data) {
   localStorage.setItem(cartsKey, JSON.stringify(data));
@@ -23,4 +24,20 @@ export function setAuth(data) {
 
 export function clearAuth() {
   localStorage.removeItem(authKey);
+}
+
+export function setMemberId(data) {
+  localStorage.setItem(memberIdKey, JSON.stringify(data));
+}
+export function getMemberId() {
+  return JSON.parse(localStorage.getItem(memberIdKey));
+}
+export function clearMemberId() {
+  localStorage.removeItem(memberIdKey);
+}
+
+export function clearAll() {
+  clearMemberId();
+  clearAuth();
+  clearCarts();
 }

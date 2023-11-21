@@ -7,8 +7,8 @@ export function getList() {
 }
 
 export async function fetch() {
-  list = await getProducts();
-  console.log(list);
+  const res = await getProducts();
+  list = res.content;
 }
 
 export async function update(data) {

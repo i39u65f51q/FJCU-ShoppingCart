@@ -1,3 +1,4 @@
+//管理員編輯會員頁面
 import { renderManagerHeader } from '../../components/header.component.js';
 import { AUTH_MANAGER } from '../../enum/auth.js';
 import * as storage from '../../lib/localstorage.js';

@@ -34,36 +34,51 @@
           style="
             border-top: 1px solid black;
             border-bottom: 1px solid black;
-            min-height: 60%;
-            max-height: 60%;
+            min-height: 65%;
+            max-height: 65%;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
           "
         >
           <!-- 購物車清單 -->
+        </div>
+        <div class="payment-wrap">
           <div
-            class="carts-item"
             style="
               width: 100%;
-              padding: 0.5rem;
+              height: 50px;
+              background-color: lightblue;
+              border-bottom: 1px solid black;
               display: flex;
               align-items: center;
-              justify-content: space-around;
-              background-color: #eee;
-              border-bottom: 1px solid #ddd;
+              justify-content: center;
             "
           >
-            <span>商品名稱 : 商品A</span><span>數量：1</span><span>總價格：30</span>
-            <div style="display: flex; gap: 0.5rem">
-              <button class="edit">新增數量</button><button class="delete">減少數量</button>
+            <h4>購物車結帳</h4>
+          </div>
+          <!-- 運送方式 -->
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; justify-content: center">
+            <div style="display: flex; align-items: center; height: 30px">
+              <span>運送方式：</span
+              ><select name="" id="delivery"></select>
+            </div>
+            <!-- 結帳方式 -->
+            <div style="display: flex; align-items: center; justify-content: center">
+              <span>結帳方式：</span>
+              <select name="" id="transaction"></select>
             </div>
           </div>
+          <div style="padding: 0.5rem; display: flex; align-items: center; justify-content: center">
+            <span>地址：</span><input type="text" class="address" style="width: 65%" placeholder="請輸入送貨地址" />
+          </div>
+          <!-- 結算 -->
+          <div style="display: flex; align-items: center; gap: 2rem; padding: 0.5rem; justify-content: center">
+            <span>商品總數量：<span class="total-count"></span></span>
+            <span>總金額：<span class="total-price"></span></span>
+            <button class="send-order" style="width: 100px">送出訂單</button>
+          </div>
         </div>
-        <div>
-          <h4>結帳</h4>
-        </div>
-        <!-- 購物車 -->
       </div>
     </main>
     <script src="./script.js" type="module"></script>
