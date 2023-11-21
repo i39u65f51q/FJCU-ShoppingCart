@@ -4,9 +4,9 @@ import * as storage from './lib/localstorage.js';
 
 //Token驗證
 window.addEventListener('load', () => {
-  const token = storage.getToken();
+  const auth = storage.getAuth();
 
-  if (token) {
+  if (auth) {
     window.location = 'page/main/index.html';
   } else {
     window.location = 'page/login/index.html';

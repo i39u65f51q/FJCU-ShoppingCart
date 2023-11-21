@@ -3,6 +3,10 @@ import { GET, POST, PATCH, DELETE } from './api.js';
 const apiUrl = 'http://localhost:3000/api/';
 
 /* 會員 */
+export async function checkAuth(payload) {
+  return await POST(apiUrl + 'auth', payload);
+}
+
 export async function getMembers() {
   return await GET(apiUrl + 'member');
 }

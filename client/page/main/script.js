@@ -1,28 +1,45 @@
 import * as MemberService from '../../service/Member.js';
 import * as OrderService from '../../service/Order.js';
 import * as ProductService from '../../service/Product.js';
-import { renderManagerHeader, renderUserHeader } from '../../components/header.component.js';
-import { cartItems } from '../common.js';
+import { renderUserHeader } from '../../components/header.component.js';
+import { cartItems, toLogin, toManager } from '../common.js';
+import * as storage from '../../lib/localstorage.js';
+import { AUTH_MANAGER, AUTH_USER } from '../../enum/auth.js';
 
 const header = document.querySelector('.header');
 const productContainer = document.querySelector('.products-container');
+const cartsWrap = document.querySelector('.carts-wrap');
 
 window.addEventListener('load', async () => {
-  await fetchAll(); //取得API資料
-
-  /* 判斷是否為使用者或管理者*/
-  if (true) {
-    renderManagerHeader(header, cartItems.length); //管理員頁面
-  } else {
-    renderUserHeader(header, cartItems.length); //使用者頁面
+  //沒有驗證身份，返回登入頁
+  const auth = storage.getAuth();
+  if (!auth) {
+    toLogin();
+    return;
+  } else if (auth === AUTH_MANAGER) {
+    toManager();
+    return;
+  } else if (auth !== AUTH_USER) {
+    storage.clearAuth();
+    toLogin();
+    return;
   }
+
+  header.innerHTML = renderUserHeader();
+  await fetchAll(); //取得API資料
   //渲染商品
   ProductService.getList().forEach(product => {
     productContainer.innerHTML += renderProductItem(product);
   });
   //渲染購物車
+  const carts = storage.getCarts();
+  if (carts && carts.length !== 0) {
+    carts.forEach(cart => {
+      cartsWrap.innerHTML += renderCartItem(cart);
+    });
+  }
 });
-
+/* 商品資料 */
 function renderProductItem(product) {
   const content = `
   <div class="item" style="width: 300px; height: auto; border: 1px solid #eee; border-radius:6px; box-shadow:0px 3px 3px rgba(0,0,0,0.5); overflow:hidden;">
@@ -43,7 +60,7 @@ function renderProductItem(product) {
 </div>`;
   return content;
 }
-
+/* 購物車項目 */
 function renderCartItem(cartItem) {
   const content = `
   <div class="carts-item"

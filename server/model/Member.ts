@@ -5,6 +5,14 @@ import { SQL } from '../sql/sql';
 export class MemberModel {
   constructor() {}
 
+  async getAuth(account: string): Promise<MemberDto | null> {
+    const sqlString: SQLStatement = sql`SELECT * FROM member WHERE account == ${account}`;
+    const res: unknown | unknown[] = await new SQL().query(sqlString);
+    if (Array.isArray(res)) return null;
+    console.log(res);
+    return new MemberDto(res);
+  }
+
   async getAll(): Promise<MemberDto[]> {
     const sqlString: SQLStatement = sql`SELECT * FROM member`;
     const data: unknown | unknown[] = await new SQL().query(sqlString);

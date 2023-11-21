@@ -5,7 +5,15 @@ export async function GET(url) {
 }
 
 export async function POST(url, payload) {
-  const res = await fetch(url, { method: 'POST' });
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) return;
+  return await res.json();
 }
 
 export async function PATCH(url, payload) {

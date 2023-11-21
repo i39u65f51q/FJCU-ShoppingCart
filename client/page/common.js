@@ -1,4 +1,4 @@
-export const cartItems = [{ id: 1, name: 'test' }];
+export const cartItems = [{ id: 1, name: 'test', price: 22 }];
 
 export function addItems(data) {
   cartItems.push(data);

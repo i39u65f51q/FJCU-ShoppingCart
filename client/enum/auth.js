@@ -1,2 +1,2 @@
-export const Authority_USER = 1;
-export const Authority_MANAGER = 2;
+export const AUTH_USER = 1;
+export const AUTH_MANAGER = 2;

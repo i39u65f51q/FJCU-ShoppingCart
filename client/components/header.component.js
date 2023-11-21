@@ -1,6 +1,6 @@
 //管理員身份
-export function renderManagerHeader(container, cartItems) {
-  container.innerHTML = `
+export function renderManagerHeader() {
+  const header = `
   <header style="width:100%; display:flex; justify-content:space-between; border:1px solid #000; align-items=center; padding: 1rem 2rem; height:50px; position:fixed; top:0; left:0; right:0; background-color:green;">
     <div style="width:50%; ">
       <h4 style="text-align=center;">BuyGo</h4>  
@@ -14,10 +14,11 @@ export function renderManagerHeader(container, cartItems) {
     </div>
   <header>  
   `;
+  return header;
 }
 //使用者身份, page:main, order, carts, cartItems:number
-export function renderUserHeader(container, cartItems) {
-  container.innerHTML = `
+export function renderUserHeader(cartItems) {
+  const header = `
   <header style="width:100%; display:flex; justify-content:space-between; border:1px solid #000; align-items=center; padding: 1rem 2rem; height:50px; position:fixed; top:0; left:0; right:0;background-color:green;">
     <div style="width:50%; ">
       <h4 style="text-align=center;">BuyGo</h4>  
@@ -31,4 +32,5 @@ export function renderUserHeader(container, cartItems) {
     </div>
   <header>  
   `;
+  return header;
 }
