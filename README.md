@@ -18,4 +18,5 @@
   請求路徑：http://localhost:3200/api/
   ex: http://localhost:3200/api/member/1 取得編號 1 會員資料
 
-https://fjuedu-my.sharepoint.com/:x:/g/personal/510171292_m365_fju_edu_tw/EZunIhWMyeFDmmltiDhgSfwBDtZyZlalhHmrGYStjTFAAw?e=XYNIov
+- 資料表設計
+  https://fjuedu-my.sharepoint.com/:x:/g/personal/510171292_m365_fju_edu_tw/EZunIhWMyeFDmmltiDhgSfwBDtZyZlalhHmrGYStjTFAAw?e=XYNIov
