@@ -1,11 +1,8 @@
-import { getTransactionType } from '../lib/fetch.js';
-let list = [];
+import * as fetch from '../lib/fetch.js';
 
-export async function fetch() {
-  const res = await getTransactionType();
-  list = res.content;
-}
-
-export function getList() {
-  return list;
+export async function getTransactionType() {
+  const res = await fetch.getTransactionType();
+  const { success, content } = res;
+  if (!success) return [];
+  return content;
 }

@@ -9,6 +9,7 @@ export class ProductController {
     this.api(router);
   }
   private api(router: Router): void {
+    //取得商品
     router.get('/api/product', (req: Request, res: Response) => {
       const mock: ProductDto[] = [
         { id: 1, name: '商品A', price: 30, quantity: 11 },
@@ -19,8 +20,20 @@ export class ProductController {
       ];
       res.status(200).json({ success: true, content: mock });
     });
-    router.post('/api/product', (req: Request, res: Response) => {});
-    router.put('/api/product/:productId', (req: Request, res: Response) => {});
-    router.delete('/api/product/:productId', (req: Request, res: Response) => {});
+    //新增商品
+    router.post('/api/product', (req: Request, res: Response) => {
+      const { body } = req;
+      res.status(200).json({ success: true });
+    });
+    //更新商品
+    router.patch('/api/product', (req: Request, res: Response) => {
+      const { body } = req;
+      res.status(200).json({ success: true });
+    });
+    //刪除商品
+    router.delete('/api/product/:productId', (req: Request, res: Response) => {
+      const { productId } = req.params;
+      res.status(200).json({ success: true });
+    });
   }
 }

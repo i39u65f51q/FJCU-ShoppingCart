@@ -1,12 +1,8 @@
-import { getDeliveryMethod } from '../lib/fetch.js';
+import * as fetch from '../lib/fetch.js';
 
-let list = [];
-
-export async function fetch() {
-  const res = await getDeliveryMethod();
-  list = res.content;
-}
-
-export function getList() {
-  return list;
+export async function getDeliveryMethod() {
+  const res = await fetch.getDeliveryMethod();
+  const { success, content } = res;
+  if (!success) return [];
+  return content;
 }

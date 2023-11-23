@@ -8,6 +8,15 @@ export class OrderProductController {
     this.api(router);
   }
   private api(router: Router): void {
-    router.get('/api/order-product', (req: Request, res: Response) => {});
+    router.get('/api/order-product', (req: Request, res: Response) => {
+      const mock: any[] = [];
+      res.status(200).json({ success: true, content: mock });
+    });
+    router.get('/api/order-product/:orderId', (req: Request, res: Response) => {
+      const { orderId } = req.params;
+
+      const mock: any[] = [];
+      res.status(200).json({ success: true, content: mock });
+    });
   }
 }

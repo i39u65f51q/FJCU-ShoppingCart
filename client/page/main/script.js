@@ -14,6 +14,9 @@ const sendOrderBtn = document.querySelector('.send-order');
 const addressElement = document.querySelector('.address');
 
 let carts = storage.getCarts() || [];
+let products = [];
+let deliveryMethods = [];
+let transactionTypes = [];
 
 const orderPayload = {
   memberId: -1,
@@ -69,7 +72,7 @@ sendOrderBtn.addEventListener('click', async e => {
   orderPayload.memberId = storage.getMemberId() || -1;
   orderPayload.products = carts.map(cart => ({ pId: cart.id, count: cart.count, per_price: cart.per_price }));
   orderPayload.address = addressElement.value;
-  console.log(orderPayload);
+  console.log(orderPayload); //FIXME:
   if (confirm('確認是否送出訂單') == true) {
     if (orderPayload.memberId == -1) {
       alert('會員編號異常');
@@ -90,7 +93,6 @@ sendOrderBtn.addEventListener('click', async e => {
 
 /* 商品資料 */
 function renderProducts() {
-  const products = ProductService.getList();
   products.forEach(product => {
     productContainer.innerHTML += renderProductItem(product);
   });
@@ -126,7 +128,9 @@ function renderProducts() {
 function renderProductItem(product) {
   const content = `
   <div class="product-item" style="width: 300px; height: auto; border: 1px solid #eee; border-radius:6px; box-shadow:0px 3px 3px rgba(0,0,0,0.5); overflow:hidden;">
-    <div style="display: block; width: 100%; height: 120px; background-color: gold"></div>
+    <div style="display: block; width: 100%; height: 120px; background-color: #eee; display:flex; align-items:center; justify-content:center;">
+      <span style="color:#aaa;">${product.name} 圖片</spa>
+    </div>
     <div style="width: 100%; display: flex; flex-direction: column; padding: 0.5rem">
       <div><span>商品名稱：</span><span class="name">${product.name}</span></div>
       <div><span>商品價格：</span><span class="price">${product.price}</span></div>
@@ -137,15 +141,15 @@ function renderProductItem(product) {
 </div>`;
   return content;
 }
+
 /* 購物車項目 */
-function renderCarts() {
+async function renderCarts() {
   cartsWrap.innerHTML = '';
   carts.forEach(cart => {
     cartsWrap.innerHTML += renderCartItem(cart);
   });
 
   //購物車新增數量事件
-  const products = ProductService.getList();
   document.querySelectorAll('.plus').forEach((btn, index) => {
     btn.addEventListener('click', e => {
       const maxQuantity = products.find(p => p.id === carts[index].id).quantity;
@@ -195,8 +199,7 @@ function renderCartItem(cartItem) {
       padding: 0.5rem;
       display: flex;
       align-items: center;
-      justify-content: space-around;
-      background-color: #eee;
+      justify-content: space-around;      
       border-bottom: 1px solid #ddd;
   ">
     <span>商品名稱 : ${cartItem.name}</span><span>數量：${cartItem.count}</span>
@@ -210,10 +213,9 @@ function renderCartItem(cartItem) {
   return content;
 }
 
-function renderTransaction() {
-  const list = TransactionTypeService.getList();
+async function renderTransaction() {
   const transactionElement = document.querySelector('#transaction');
-  list.forEach(l => {
+  transactionTypes.forEach(l => {
     transactionElement.innerHTML += `<option value="${l.id}">${l.name}</option>`;
   });
   transactionElement.addEventListener('change', e => {
@@ -222,10 +224,9 @@ function renderTransaction() {
   });
 }
 
-function renderDelivery() {
-  const list = DeliveryMethodService.getList();
+async function renderDelivery() {
   const deliveryElement = document.querySelector('#delivery');
-  list.forEach(l => {
+  deliveryMethods.forEach(l => {
     deliveryElement.innerHTML += `<option value="${l.id}">${l.name}</option>`;
   });
   deliveryElement.addEventListener('change', e => {
@@ -235,9 +236,7 @@ function renderDelivery() {
 }
 
 async function fetchAll() {
-  const promise = [ProductService.fetch(), TransactionTypeService.fetch(), DeliveryMethodService.fetch()];
-  const result = await Promise.all(promise);
-  console.log(ProductService.getList());
-  console.log(TransactionTypeService.getList());
-  console.log(DeliveryMethodService.getList());
+  products = await ProductService.getProducts();
+  deliveryMethods = await DeliveryMethodService.getDeliveryMethod();
+  transactionTypes = await TransactionTypeService.getTransactionType();
 }

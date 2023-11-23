@@ -10,30 +10,24 @@ export async function getMembers() {
   return await GET(apiUrl + 'member');
 }
 export async function getMember(memberId) {
-  return await GET(apiUrl + 'member/' + id);
+  return await GET(apiUrl + 'member/' + memberId);
 }
 export async function addMember(payload) {
   return await POST(apiUrl + 'member', payload);
 }
 export async function updateMember(payload) {
-  return await PATCH(apiUrl + 'member/' + payload.id, payload);
-}
-export async function deleteMember(id) {
-  return await DELETE(apiUrl + 'member/' + id);
+  return await PATCH(apiUrl + 'member', payload);
 }
 
 /* 商品 */
 export async function getProducts() {
   return await GET(apiUrl + 'product');
 }
-export async function getProduct(id) {
-  return await GET(apiUrl + 'product/' + id);
-}
 export async function addProduct(payload) {
   return await POST(apiUrl + 'product', payload);
 }
 export async function updateProduct(payload) {
-  return await PATCH(apiUrl + 'product/' + payload.id, payload);
+  return await PATCH(apiUrl + 'product', payload);
 }
 export async function deleteProduct(id) {
   return await DELETE(apiUrl + 'product/' + id);
@@ -60,8 +54,14 @@ export async function deleteOrder(id) {
 export async function getDeliveryMethod() {
   return await GET(apiUrl + 'delivery');
 }
-
 /* 付款方式 */
 export async function getTransactionType() {
   return await GET(apiUrl + 'transaction');
+}
+/* 訂單產品 */
+export async function getOrderProducts() {
+  return await GET(apiUrl + 'order-product');
+}
+export async function getOrderProduct(orderId) {
+  return await GET(apiUrl + 'order-product/' + orderId);
 }

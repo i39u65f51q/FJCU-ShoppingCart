@@ -24,5 +24,4 @@
   3. 商品主頁面 : page/main
 - 管理員頁面路徑：
   1. 商品庫存管理：page/products
-  2. 管理會員頁面：page/manager
-  3. 修改訂單狀態頁面：page/order
+  2. 修改訂單狀態頁面：page/order

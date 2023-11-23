@@ -1,24 +1,29 @@
-import { getProducts, getProduct, addProduct, updateProduct, deleteProduct } from '../lib/fetch.js';
+import * as fetch from '../lib/fetch.js';
 
-let list = [];
-
-export function getList() {
-  return list;
+export async function getProducts() {
+  const res = await fetch.getProducts();
+  const { success, content } = res;
+  if (!success) return [];
+  return content;
 }
 
-export async function fetch() {
-  const res = await getProducts();
-  list = res.content;
+export async function updateProduct(payload) {
+  const res = await fetch.updateProduct(payload);
+  const { success } = res;
+  if (!success) return false;
+  return true;
 }
 
-export async function update(data) {
-  await updateProduct(data);
+export async function deleteProduct(productId) {
+  const res = await fetch.deleteProduct(productId);
+  const { success } = res;
+  if (!success) return false;
+  return true;
 }
 
-export async function add(data) {
-  await addProduct(data);
-}
-
-export async function remove(id) {
-  await deleteProduct(id);
+export async function addProduct(payload) {
+  const res = await fetch.addProduct(payload);
+  const { success } = res;
+  if (!success) return false;
+  return true;
 }

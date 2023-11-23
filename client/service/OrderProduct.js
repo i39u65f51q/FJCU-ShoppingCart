@@ -1,7 +1,16 @@
-let list = [];
+import * as fetch from '../lib/fetch.js';
 
-export async function fetch() {}
+//{orderId:number, product:Id}
+export async function getOrderProducts() {
+  const res = await fetch.getOrderProducts();
+  const { success, content } = res;
+  if (!success) return [];
+  return content;
+}
 
-export function getList() {
-  list = data;
+export async function getOrderProduct(orderId) {
+  const res = await fetch.getOrderProduct(orderId);
+  const { success, content } = res;
+  if (!success) return [];
+  return content;
 }
