@@ -7,10 +7,10 @@ export class OrderProductDto {
   public eachProductPrice: number;
   public total: number;
   constructor(payload: unknown) {
-    this.orderId = get(payload, 'o_id', -1);
-    this.productId = get(payload, 'p_id', -1);
-    this.quantity = get(payload, 'orderquantity', -1);
-    this.eachProductPrice = get(payload, 'orderpriceperitem', -1);
+    this.orderId = get(payload, 'o_id') || get(payload, 'orderId') || -1;
+    this.productId = get(payload, 'p_id') || get(payload, 'productId') || -1;
+    this.quantity = get(payload, 'orderquantity') || get(payload, 'quantity') || -1;
+    this.eachProductPrice = get(payload, 'orderpriceperitem') || get(payload, 'per_price') || -1;
     this.total = get(payload, 'total', -1);
   }
 }

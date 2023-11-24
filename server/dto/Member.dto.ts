@@ -8,8 +8,8 @@ export class MemberDto {
   public password: string;
   public authority: number;
   constructor(payload: unknown) {
-    this.id = get(payload, 'm_id', -1);
-    this.name = get(payload, 'm_name', '');
+    this.id = get(payload, 'm_id') || get(payload, 'id') || -1;
+    this.name = get(payload, 'm_name') || get(payload, 'id') || '';
     this.phone = get(payload, 'phone', '');
     this.account = get(payload, 'account', '');
     this.password = get(payload, 'password', '');
