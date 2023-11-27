@@ -10,7 +10,7 @@ export class ProductController {
   }
   private api(router: Router): void {
     //取得商品
-    router.get('/api/product', (req: Request, res: Response) => {
+    router.get('/api/product', async (req: Request, res: Response) => {
       const mock: ProductDto[] = [
         { id: 1, name: '商品A', price: 30, quantity: 11 },
         { id: 2, name: '商品B', price: 35, quantity: 12 },
@@ -18,21 +18,29 @@ export class ProductController {
         { id: 4, name: '商品D', price: 23, quantity: 3 },
         { id: 5, name: '商品E', price: 21, quantity: 10 },
       ];
+      //FIXME:
+      const result: ProductDto[] = await this.model.getAll();
       res.status(200).json({ success: true, content: mock });
     });
     //新增商品
-    router.post('/api/product', (req: Request, res: Response) => {
+    router.post('/api/product', async (req: Request, res: Response) => {
       const { body } = req;
+      //FIXME:
+      const insertId: number = await this.model.insert(new ProductDto(body));
       res.status(200).json({ success: true });
     });
     //更新商品
-    router.patch('/api/product', (req: Request, res: Response) => {
+    router.patch('/api/product', async (req: Request, res: Response) => {
       const { body } = req;
+      //FIXME:
+      const result: boolean = await this.model.update(new ProductDto(body));
       res.status(200).json({ success: true });
     });
     //刪除商品
-    router.delete('/api/product/:productId', (req: Request, res: Response) => {
+    router.delete('/api/product/:productId', async (req: Request, res: Response) => {
       const { productId } = req.params;
+      //FIXME:
+      const result: boolean = await this.model.delete(Number(productId));
       res.status(200).json({ success: true });
     });
   }

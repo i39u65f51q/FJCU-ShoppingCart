@@ -18,8 +18,12 @@ export class OrderProductModel {
     if (!Array.isArray(data)) return [];
     return data.map((d: unknown) => new OrderProductDto(d));
   }
-  //TODO:
-  public async insert(data: OrderProductDto): Promise<boolean> {
-    return true;
+
+  public async insert(data: OrderProductDto): Promise<number> {
+    //FIXME:
+    const sqlString: SQLStatement = sql``;
+    const insertId: unknown | unknown[] = await new SQL().query(sqlString);
+    if (!insertId) return -1;
+    return insertId as number;
   }
 }

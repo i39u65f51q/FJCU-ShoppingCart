@@ -12,11 +12,11 @@ export class ProductModel {
     return data.map((d: unknown) => new ProductDto(d));
   }
 
-  public async insert(product: ProductDto): Promise<boolean> {
+  public async insert(product: ProductDto): Promise<number> {
     const sqlString = sql`INSERT INTO product (p_name, price, quantity) VALUES (${product.name}, ${product.price}, ${product.quantity});`;
-    const res: unknown[] | unknown = await new SQL().query(sqlString);
-    //FIXME:
-    return true;
+    const insertId: unknown[] | unknown = await new SQL().query(sqlString);
+    if (Array.isArray(insertId)) return -1;
+    return insertId as number;
   }
 
   public async update(product: ProductDto): Promise<boolean> {

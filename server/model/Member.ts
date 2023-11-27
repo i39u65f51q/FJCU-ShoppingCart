@@ -5,8 +5,8 @@ import { SQL } from '../sql/sql';
 export class MemberModel {
   constructor() {}
 
-  async getAuth(account: string): Promise<MemberDto | null> {
-    const sqlString: SQLStatement = sql`SELECT * FROM member WHERE account == ${account}`;
+  async getAuth(member: MemberDto): Promise<MemberDto | null> {
+    const sqlString: SQLStatement = sql`SELECT * FROM member WHERE account == ${member.account}`;
     const res: unknown | unknown[] = await new SQL().query(sqlString);
     if (Array.isArray(res)) return null;
     console.log(res);
@@ -27,17 +27,17 @@ export class MemberModel {
     return new MemberDto(data);
   }
 
-  async insert(member: MemberDto) {
+  async insert(member: MemberDto): Promise<number> {
     const sqlString: SQLStatement = sql`INSERT INTO member (m_name, phone, account, password, authority) VALUES (${member.name}, ${member.phone}, ${member.account}, ${member.password}, 1);`;
-    const data: unknown | unknown[] = await new SQL().query(sqlString);
-    //TODO:
-    return true;
+    const insertId: unknown | unknown[] = await new SQL().query(sqlString);
+    if (Array.isArray(insertId)) return -1;
+    return insertId as number;
   }
 
   async update(member: MemberDto) {
     const sqlString: SQLStatement = sql`UPDATE member SET phone = ${member.phone}, password = ${member.password}, m_name = ${member.name} WHERE m_id = ${member.id};`;
     const data: unknown | unknown[] = await new SQL().query(sqlString);
-    //TODO:
+    console.log(data);
     return true;
   }
 }

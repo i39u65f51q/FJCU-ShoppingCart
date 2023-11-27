@@ -1,16 +1,16 @@
-import * as fetch from '../lib/fetch.js';
+import * as api from '../api/api.js';
 import * as storage from '../lib/localstorage.js';
 
 //data:[{id:number, name:string, phone:string, account:string, password:string, authority:number }]
 export async function getMembers() {
-  const res = await fetch.getMembers();
+  const res = await api.getMembers();
   const { success, content } = res;
   if (!success) return [];
   return content;
 }
 
 export async function getMember(memberId) {
-  const res = await fetch.getMember(memberId);
+  const res = await api.getMember(memberId);
   const { success, content } = res;
   if (!success) return null;
   return content;
@@ -18,20 +18,20 @@ export async function getMember(memberId) {
 
 //payload:{id:number, name:string, phone:string, account:string, password:string, authority:number }
 export async function updateMember(payload) {
-  const res = await fetch.updateMember(payload);
+  const res = await api.updateMember(payload);
   const { success } = res;
   return success;
 }
 
 export async function addMember(payload) {
-  const res = await fetch.addMember(payload);
+  const res = await api.addMember(payload);
   const { success } = res;
   return success;
 }
 
 //data:{account:string, password:string}; 回傳boolean
 export async function checkAuth(payload) {
-  const result = await fetch.checkAuth(payload);
+  const result = await api.checkAuth(payload);
   const { success, content } = result;
   if (!success) return false;
   const { authority, id } = content;

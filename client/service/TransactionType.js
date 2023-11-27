@@ -1,7 +1,7 @@
-import * as fetch from '../lib/fetch.js';
+import * as api from '../api/api.js';
 
 export async function getTransactionType() {
-  const res = await fetch.getTransactionType();
+  const res = await api.getTransactionType();
   const { success, content } = res;
   if (!success) return [];
   return content;
