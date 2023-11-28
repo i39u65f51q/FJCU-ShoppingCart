@@ -23,7 +23,6 @@ export class SQL {
           rej(err.message);
           return;
         }
-        console.log('res:', results);
         res(results);
       });
       this.mysql.end();
@@ -33,7 +32,6 @@ export class SQL {
   private async connect(): Promise<boolean> {
     return new Promise(async (res, rej) => {
       this.mysql.connect((err: MysqlError) => {
-        console.log('SQL Connection:', err);
         err ? rej(false) : res(true);
       });
     });

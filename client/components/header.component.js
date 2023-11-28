@@ -7,7 +7,7 @@ export function renderManagerHeader() {
     </div>
     <div style="width:50%; display:flex; gap:1rem; justify-content:flex-end">  
       <nav style="display:flex; align-items:center;gap:1rem;">
-        <span class="order-page">訂單管理</span>
+        <span class="order-manage-page">訂單管理</span>
         <span class="manage-page">商品管理</span>
       </nav>
       <button class="logout">登出</button>
@@ -25,9 +25,9 @@ export function renderUserHeader() {
     </div>
     <div style="width:50%; display:flex; gap:1rem; justify-content:flex-end; align-items:center;">  
       <nav style="display:flex; align-items:center;gap:1rem;">
-      <span class="order-page" style="cursor:pointer">商品頁面</span>        
-      <span class="manage-page" style="cursor:pointer">訂單紀錄</span>
-      <span class="order-page" style="cursor:pointer">編輯個人資料</span>        
+      <span class="main-page" style="cursor:pointer">商品頁面</span>        
+      <span class="order-page" style="cursor:pointer">訂單紀錄</span>
+      <span class="member-page" style="cursor:pointer">編輯個人資料</span>        
       </nav>
       <button class="logout" style="width:70px;height:25px; ">登出</button>
     </div>

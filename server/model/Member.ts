@@ -35,8 +35,8 @@ export class MemberModel {
   }
 
   async update(member: MemberDto): Promise<boolean> {
-    const sqlString: SQLStatement = sql`UPDATE new_schema.member SET phone = ${member.phone}, password = ${member.password}, m_name = ${member.name} WHERE m_id = ${member.id};`;
+    const sqlString: SQLStatement = sql`UPDATE new_schema.member SET phone = ${member.phone}, password = ${member.password}, m_name = ${member.name} WHERE account = ${member.account};`;
     const result: unknown | unknown[] = await new SQL().query(sqlString);
-    return (result as any).affectedRow > 0 ? true : false;
+    return (result as any).affectedRows > 0 ? true : false;
   }
 }

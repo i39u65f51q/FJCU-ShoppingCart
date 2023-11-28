@@ -3,7 +3,7 @@ import * as ProductService from '../../service/Product.js';
 import * as DeliveryMethodService from '../../service/DeliveryMethod.js';
 import * as TransactionTypeService from '../../service/TransactionType.js';
 import { renderUserHeader } from '../../components/header.component.js';
-import { toLogin, toManager } from '../common.js';
+import { toLogin, toManager, routerEvent } from '../common.js';
 import * as storage from '../../lib/localstorage.js';
 import { AUTH_MANAGER, AUTH_USER } from '../../enum/auth.js';
 
@@ -46,6 +46,7 @@ window.addEventListener('load', async () => {
   }
 
   header.innerHTML = renderUserHeader();
+  routerEvent();
   await fetchAll();
   //渲染商品
   renderProducts();

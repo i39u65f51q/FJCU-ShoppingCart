@@ -29,6 +29,6 @@ export class OrderModel {
   public async update(order: OrderDto): Promise<boolean> {
     const sqlString: SQLStatement = sql`UPDATE new_schema.order SET status = ${order.status} WHERE o_id = ${order.id};`;
     const result: unknown | unknown[] = await new SQL().query(sqlString);
-    return (result as any).affectedRow > 0 ? true : false;
+    return (result as any).affectedRows > 0 ? true : false;
   }
 }

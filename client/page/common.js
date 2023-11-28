@@ -29,3 +29,36 @@ export function toOrderManager() {
 export function toProduct() {
   window.location.href = '../product/index.html';
 }
+
+export function routerEvent() {
+  const main = document.querySelector('.main-page');
+  if (main) {
+    main.addEventListener('click', () => {
+      toMain();
+    });
+  }
+  const order = document.querySelector('.order-page');
+  if (order) {
+    order.addEventListener('click', () => {
+      toOrder();
+    });
+  }
+  const manage = document.querySelector('.manage-page');
+  if (manage) {
+    manage.addEventListener('click', () => {
+      toManager();
+    });
+  }
+  const member = document.querySelector('.member-page');
+  if (member) {
+    member.addEventListener('click', () => {
+      toMember();
+    });
+  }
+  const orderManager = document.querySelector('.order-manage-page');
+  if (orderManager) {
+    orderManager.addEventListener('click', () => {
+      toOrderManager();
+    });
+  }
+}

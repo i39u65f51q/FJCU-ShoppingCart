@@ -22,12 +22,12 @@ export class ProductModel {
   public async update(product: ProductDto): Promise<boolean> {
     const sqlString: SQLStatement = sql`UPDATE product SET p_Name = ${product.name}, price = ${product.price}  ,quantity = ${product.quantity} WHERE p_id = ${product.id};`;
     const result: unknown[] | unknown = await new SQL().query(sqlString);
-    return (result as any).affectedRow > 0 ? true : false;
+    return (result as any).affectedRows > 0 ? true : false;
   }
 
   public async delete(id: number): Promise<boolean> {
     const sqlString: SQLStatement = sql`DELETE FROM product WHERE p_id = ${id};`;
     const result: unknown[] | unknown = await new SQL().query(sqlString);
-    return (result as any).affectedRow > 0 ? true : false;
+    return (result as any).affectedRows > 0 ? true : false;
   }
 }
