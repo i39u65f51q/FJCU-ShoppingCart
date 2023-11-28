@@ -1,5 +1,6 @@
 import express, { Router, Express } from 'express';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 import { TransactionTypeController } from './controller/TransactionType.controller';
 import { MemberController } from './controller/Member.controller';
 import { OrderController } from './controller/Order.controller';
@@ -18,7 +19,9 @@ function main(): void {
   new ProductController(router); //商品
   new DeliveryMethodController(router); //運送方式
 
+  app.use(bodyParser.json());
   app.use(cors(), router);
+
   app.listen(3000);
   console.log('Server: run on port:3000');
 }

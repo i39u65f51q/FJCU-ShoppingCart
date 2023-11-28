@@ -25,17 +25,17 @@ export async function updateMember(payload) {
 
 export async function addMember(payload) {
   const res = await api.addMember(payload);
-  const { success } = res;
-  return success;
+  const { success, content } = res;
+  return content;
 }
 
 //data:{account:string, password:string}; 回傳boolean
 export async function checkAuth(payload) {
   const result = await api.checkAuth(payload);
   const { success, content } = result;
-  if (!success) return false;
+  if (!success) return content;
   const { authority, id } = content;
   storage.setAuth(authority); //會員權限
   storage.setMemberId(id); //會員編號
-  return true;
+  return content;
 }

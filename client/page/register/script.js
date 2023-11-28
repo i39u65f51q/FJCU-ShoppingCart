@@ -1,5 +1,6 @@
 //註冊頁面
 import { toLogin } from '../common.js';
+import * as MemberService from '../../service/Member.js';
 
 const account = document.querySelector('.account');
 const pxwd = document.querySelector('.pxwd');
@@ -18,16 +19,28 @@ returnBtn.addEventListener('click', e => {
   toLogin();
 });
 
-form.addEventListener('submit', e => {
+form.addEventListener('submit', async e => {
   e.preventDefault();
   if (!isValueOk()) {
     alert('註冊失敗：資料不得為空');
     return;
   }
 
-  //TODO: CALL申請帳號API
-
-  alert('註冊帳號成功');
+  //註冊帳號API
+  const payload = {
+    account: account.value,
+    password: pxwd.value,
+    phone: phone.value,
+    name: username.value,
+  };
+  const result = await MemberService.addMember(payload);
+  if (result.length > 0) {
+    account.value = '';
+    pxwd.value = '';
+    alert('此帳號已存在');
+    return;
+  }
+  alert('註冊帳號成功，返回登入頁登入');
   toLogin();
 });
 

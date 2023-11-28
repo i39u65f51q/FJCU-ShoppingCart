@@ -9,10 +9,10 @@ export class MemberDto {
   public authority: number;
   constructor(payload: unknown) {
     this.id = get(payload, 'm_id') || get(payload, 'id') || -1;
-    this.name = get(payload, 'm_name') || get(payload, 'id') || '';
+    this.name = get(payload, 'm_name') || get(payload, 'name') || '';
     this.phone = get(payload, 'phone', '');
     this.account = get(payload, 'account', '');
     this.password = get(payload, 'password', '');
-    this.authority = get(payload, 'authority', -1);
+    this.authority = get(payload, 'authority', 1);
   }
 }

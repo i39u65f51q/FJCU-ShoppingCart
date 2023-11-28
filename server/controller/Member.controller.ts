@@ -12,9 +12,9 @@ export class MemberController {
     //身份驗證
     router.post('/api/auth', async (req: Request, res: Response) => {
       const { body } = req;
-      const result: MemberDto[] = await this.model.getAuth(new MemberDto(body));
-      if (result.length === 0) {
-        res.status(200).json({ success: false, content: null });
+      const result: MemberDto[] | null = await this.model.getAuth(new MemberDto(body));
+      if (!result || !result.length) {
+        res.status(200).json({ success: false, content: [] });
       } else {
         res.status(200).json({ success: true, content: result[0] });
       }
@@ -37,13 +37,14 @@ export class MemberController {
     //新增會員
     router.post('/api/member', async (req: Request, res: Response) => {
       const { body } = req;
-      const result = await this.model.getAuth(new MemberDto(body));
-      if (result.length > 0) {
-        res.status(200).json({ success: false, content: '帳號重複' });
+      const result: MemberDto[] | null = await this.model.getAuth(new MemberDto(body));
+      console.log(result);
+      if (result && result.length > 0) {
+        res.status(200).json({ success: false, content: result });
         return;
       }
       const insertId: number = await this.model.insert(new MemberDto(body));
-      res.status(200).json({ success: true, insertId });
+      res.status(200).json({ success: true, content: [], insertId });
     });
     //更新會員
     router.patch('/api/member', async (req: Request, res: Response) => {

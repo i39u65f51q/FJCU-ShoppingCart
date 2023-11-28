@@ -5,9 +5,10 @@ import { SQL } from '../sql/sql';
 export class MemberModel {
   constructor() {}
 
-  async getAuth(member: MemberDto): Promise<MemberDto[]> {
+  async getAuth(member: MemberDto): Promise<MemberDto[] | null> {
     const sqlString: SQLStatement = sql`SELECT * FROM new_schema.member WHERE account = ${member.account}`;
     const res: unknown | unknown[] = await new SQL().query(sqlString);
+    // console.log('res', res);
     return (res as unknown[]).map((data: unknown) => new MemberDto(data));
   }
 

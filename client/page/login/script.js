@@ -2,7 +2,7 @@
 import { toRegister, toMain, toManager } from '../common.js';
 import * as storage from '../../lib/localstorage.js';
 import { AUTH_MANAGER, AUTH_USER } from '../../enum/auth.js';
-import { checkAuth } from '../../service/Member.js';
+import * as MemberService from '../../service/Member.js';
 
 const form = document.querySelector('.form');
 const register = document.querySelector('.register');
@@ -21,14 +21,21 @@ form.addEventListener('submit', async e => {
     alert('帳號或密碼不得為空');
     return;
   }
-
   const payload = {
     account: account.value,
     password: pxwd.value,
   };
-  const success = await checkAuth(payload); //MemberService
-  if (!success) {
-    alert('帳號或密碼輸入錯誤');
+  const content = await MemberService.checkAuth(payload);
+  //帳號尚未申請
+  if (content.length === 0) {
+    alert('此帳號尚未申請');
+    reset();
+    return;
+  }
+  //密碼輸入錯誤
+  if (content.password !== pxwd.value) {
+    alert('密碼輸入錯誤');
+    pxwd.value = '';
     return;
   }
   alert('登入成功');
