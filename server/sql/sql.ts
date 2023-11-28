@@ -8,9 +8,9 @@ export class SQL {
     this.mysql = mysql.createConnection({
       host: 'localhost',
       user: 'root',
-      password: '@eric0129',
-      database: 'fjcu-carts',
-      port: 3300,
+      password: 'eric0129',
+      database: 'new_schema',
+      port: 3306,
     });
   }
 
@@ -23,7 +23,7 @@ export class SQL {
           rej(err.message);
           return;
         }
-        console.log(results);
+        console.log('res:', results);
         res(results);
       });
       this.mysql.end();

@@ -10,18 +10,14 @@ export class OrderProductController {
   }
   private api(router: Router): void {
     router.get('/api/order-product', async (req: Request, res: Response) => {
-      const mock: any[] = [];
-      //FIXME:
       const result: OrderProductDto[] = await this.model.getAll();
-      res.status(200).json({ success: true, content: mock });
+      res.status(200).json({ success: true, content: result });
     });
 
-    router.get('/api/order-product/:orderId', async (req: Request, res: Response) => {
-      const { orderId } = req.params;
-      //FIXME:
-      const result: OrderProductDto[] = await this.model.get(Number(orderId));
-      const mock: any[] = [];
-      res.status(200).json({ success: true, content: mock });
+    router.get('/api/order-product/:memberId', async (req: Request, res: Response) => {
+      const { memberId } = req.params;
+      const result: OrderProductDto[] = await this.model.get(Number(memberId));
+      res.status(200).json({ success: true, content: result });
     });
   }
 }

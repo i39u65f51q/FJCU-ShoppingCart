@@ -5,7 +5,7 @@ export class DeliveryMethodModel {
   constructor() {}
 
   public async getAll(): Promise<DeliveryMethodDto[]> {
-    const sqlString: SQLStatement = sql`SELECT * FROM deliverymethod`;
+    const sqlString: SQLStatement = sql`SELECT * FROM new_schema.deliverymethod;`;
     const data: unknown | unknown[] = await new SQL().query(sqlString);
     if (!Array.isArray(data)) return [];
     return data.map((d: unknown) => new DeliveryMethodDto(d));

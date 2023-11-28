@@ -14,22 +14,20 @@ export class ProductModel {
 
   public async insert(product: ProductDto): Promise<number> {
     const sqlString = sql`INSERT INTO product (p_name, price, quantity) VALUES (${product.name}, ${product.price}, ${product.quantity});`;
-    const insertId: unknown[] | unknown = await new SQL().query(sqlString);
-    if (Array.isArray(insertId)) return -1;
-    return insertId as number;
+    const result: unknown[] | unknown = await new SQL().query(sqlString);
+    const insertId: number = (result as any).insertId;
+    return insertId;
   }
 
   public async update(product: ProductDto): Promise<boolean> {
     const sqlString: SQLStatement = sql`UPDATE product SET p_Name = ${product.name}, price = ${product.price}  ,quantity = ${product.quantity} WHERE p_id = ${product.id};`;
-    const res: unknown[] | unknown = await new SQL().query(sqlString);
-    //FIXME:
-    return true;
+    const result: unknown[] | unknown = await new SQL().query(sqlString);
+    return (result as any).affectedRow > 0 ? true : false;
   }
 
   public async delete(id: number): Promise<boolean> {
-    const sqlString: SQLStatement = sql`DELETE FROM product WHERE p_id == ${id};`;
-    const res: unknown[] | unknown = await new SQL().query(sqlString);
-    //FIXME:
-    return true;
+    const sqlString: SQLStatement = sql`DELETE FROM product WHERE p_id = ${id};`;
+    const result: unknown[] | unknown = await new SQL().query(sqlString);
+    return (result as any).affectedRow > 0 ? true : false;
   }
 }

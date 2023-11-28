@@ -11,14 +11,8 @@ export class DeliveryMethodController {
 
   private api(router: Router): void {
     router.get('/api/delivery', async (req: Request, res: Response) => {
-      //FIXME:
       const result: DeliveryMethodDto[] = await this.model.getAll();
-
-      const mock: DeliveryMethodDto[] = [
-        { id: 1, name: '7-11店到店' },
-        { id: 2, name: '宅配' },
-      ];
-      res.status(200).json({ success: true, content: mock });
+      res.status(200).json({ success: true, content: result });
     });
   }
 }
