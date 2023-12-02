@@ -11,35 +11,36 @@ class RegisterModule {
   constructor(container) {
     this.router = new RouterService();
     this.member = new MemberService();
-    this.returnBtn = container.querySelector('.return');
-    this.form = container.querySelector('form');
-    this.phone = container.querySelector('.phone');
-    this.name = container.querySelector('.name');
-    this.pxwd = container.querySelector('.pxwd');
-    this.account = container.querySelector('.account');
-    this.handleReturnBtnEvent();
-    this.handleFormSubmitEvent();
+    this.returnHandler(container);
+    this.submitHandler(container);
   }
-  handleReturnBtnEvent() {
-    this.returnBtn.addEventListener('click', e => {
+  returnHandler(container) {
+    const returnBtn = container.querySelector('.return');
+    returnBtn.addEventListener('click', e => {
       e.preventDefault();
       this.router.toLogin();
     });
   }
-  handleFormSubmitEvent() {
-    this.form.addEventListener('submit', async e => {
+  submitHandler(container) {
+    const form = container.querySelector('form');
+    const phone = container.querySelector('.phone');
+    const name = container.querySelector('.name');
+    const pxwd = container.querySelector('.pxwd');
+    const account = container.querySelector('.account');
+
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-      if (!this.checkValue()) {
+      if (!this.checkValue(account, pxwd, name, phone)) {
         alert('註冊失敗：資料不得為空');
         return;
       }
 
       //註冊帳號API
       const payload = {
-        account: this.account.value,
-        password: this.pxwd.value,
-        phone: this.phone.value,
-        name: this.name.value,
+        account: account.value,
+        password: pxwd.value,
+        phone: phone.value,
+        name: name.value,
       };
       const result = await this.member.addMember(payload);
       //檢查資料庫是否存在相同帳號
@@ -53,13 +54,7 @@ class RegisterModule {
       this.router.toLogin();
     });
   }
-  checkValue() {
-    return this.account.value !== '' && this.pxwd.value !== '' && this.name.value !== '' && this.phone.value !== '';
-  }
-  reset() {
-    this.account.value = '';
-    this.pxwd.value = '';
-    this.name.value = '';
-    this.phone.value = '';
+  checkValue(account, pxwd, name, phone) {
+    return account.value !== '' && pxwd.value !== '' && name.value !== '' && phone.value !== '';
   }
 }

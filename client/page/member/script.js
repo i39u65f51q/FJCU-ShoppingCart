@@ -12,35 +12,38 @@ class MemberInfoModule extends BaseModule {
     const header = container.querySelector('.header');
     super(header);
     this.member = new MemberService();
-    this.form = container.querySelector('.form');
-    this.name = container.querySelector('.name');
-    this.account = container.querySelector('.account');
-    this.pxwd = container.querySelector('.pxwd');
-    this.phone = container.querySelector('.phone');
-    this.renderInfo();
-    this.handleFormSubmitEvent();
+    this.renderUserInfo(container);
+    this.submitHandler(container);
   }
 
-  async renderInfo() {
+  async renderUserInfo(container) {
     const result = await this.member.getMember(this.memberId);
-    console.log(result);
+    const name = container.querySelector('.name');
+    const account = container.querySelector('.account');
+    const pxwd = container.querySelector('.pxwd');
+    const phone = container.querySelector('.phone');
     if (result) {
-      this.account.textContent = result.account;
-      this.pxwd.value = result.password;
-      this.name.value = result.name;
-      this.phone.value = result.phone;
+      account.textContent = result.account;
+      pxwd.value = result.password;
+      name.value = result.name;
+      phone.value = result.phone;
     }
   }
 
-  handleFormSubmitEvent() {
-    this.form.addEventListener('submit', async e => {
+  submitHandler(container) {
+    const form = container.querySelector('.form');
+    const name = container.querySelector('.name');
+    const account = container.querySelector('.account');
+    const pxwd = container.querySelector('.pxwd');
+    const phone = container.querySelector('.phone');
+    form.addEventListener('submit', async e => {
       e.preventDefault();
 
       const payload = {
-        account: this.account.textContent,
-        password: this.pxwd.value,
-        name: this.name.value,
-        phone: this.phone.value,
+        account: account.textContent,
+        password: pxwd.value,
+        name: name.value,
+        phone: phone.value,
       };
 
       if (!payload.password || !payload.name || !payload.phone) {

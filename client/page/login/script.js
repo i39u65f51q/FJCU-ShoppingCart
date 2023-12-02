@@ -11,26 +11,25 @@ window.addEventListener('load', () => {
 
 class LoginModule {
   constructor(container) {
-    this.form = container.querySelector('.form');
-    this.register = container.querySelector('.register');
-    this.pxwd = container.querySelector('.pxwd');
-    this.account = container.querySelector('.account');
     this.router = new RouterService();
     this.member = new MemberService();
     this.storage = new StorageService();
-    this.listRegisterClickEvent(); //監聽註冊按鈕點擊事件
-    this.listenFormSubmitEvent(); //監聽Form事件
+    this.registerHandler(container); //監聽註冊按鈕點擊事件
+    this.submitHandler(container); //監聽Form事件
   }
-  listenFormSubmitEvent() {
-    this.form.addEventListener('submit', async e => {
+  submitHandler(container) {
+    const form = container.querySelector('.form');
+    const account = container.querySelector('.account');
+    const pxwd = container.querySelector('.pxwd');
+    form.addEventListener('submit', async e => {
       e.preventDefault();
       //帳密欄位檢查
-      if (!this.checkValue()) {
+      if (!this.checkValue(account, pxwd)) {
         alert('帳號或密碼不得為空');
         return;
       }
       //登入驗證
-      const success = await this.isLoginSuccess();
+      const success = await this.isLoginSuccess(account, pxwd);
       if (!success) return;
 
       alert('登入成功');
@@ -43,23 +42,20 @@ class LoginModule {
       }
     });
   }
-  listRegisterClickEvent() {
-    this.register.addEventListener('click', e => {
+  registerHandler(container) {
+    const register = container.querySelector('.register');
+    register.addEventListener('click', e => {
       e.preventDefault();
       this.router.toRegister();
     });
   }
-  resetValue() {
-    this.account.value = '';
-    this.pxwd.value = '';
+  checkValue(account, pxwd) {
+    return account.value !== '' && pxwd.value !== '';
   }
-  checkValue() {
-    return this.account.value !== '' && this.pxwd.value !== '';
-  }
-  async isLoginSuccess() {
+  async isLoginSuccess(account, pxwd) {
     const payload = {
-      account: this.account.value,
-      password: this.pxwd.value,
+      account: account.value,
+      password: pxwd.value,
     };
     const content = await this.member.checkAuth(payload);
     //帳號尚未申請
@@ -69,9 +65,9 @@ class LoginModule {
       return false;
     }
     //密碼輸入錯誤
-    if (content.password !== this.pxwd.value) {
+    if (content.password !== pxwd.value) {
       alert('密碼輸入錯誤');
-      this.pxwd.value = '';
+      pxwd.value = '';
       return false;
     }
     //儲存帳號登入資訊在LocalStorage
