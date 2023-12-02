@@ -1,43 +1,39 @@
-const cartsKey = 'carts';
-const authKey = 'auth';
-const memberIdKey = 'memberId';
-
-export function setCarts(data) {
-  localStorage.setItem(cartsKey, JSON.stringify(data));
-}
-
-export function getCarts() {
-  return JSON.parse(localStorage.getItem(cartsKey));
-}
-
-export function clearCarts() {
-  localStorage.removeItem(cartsKey);
-}
-
-export function getAuth() {
-  return JSON.parse(localStorage.getItem(authKey));
-}
-
-export function setAuth(data) {
-  localStorage.setItem(authKey, JSON.stringify(data));
-}
-
-export function clearAuth() {
-  localStorage.removeItem(authKey);
-}
-
-export function setMemberId(data) {
-  localStorage.setItem(memberIdKey, JSON.stringify(data));
-}
-export function getMemberId() {
-  return JSON.parse(localStorage.getItem(memberIdKey));
-}
-export function clearMemberId() {
-  localStorage.removeItem(memberIdKey);
-}
-
-export function clearAll() {
-  clearMemberId();
-  clearAuth();
-  clearCarts();
+export class StorageService {
+  constructor() {
+    this.cart = 'carts';
+    this.auth = 'auth';
+    this.member = 'memberId';
+  }
+  setCarts(data) {
+    localStorage.setItem(this.cart, JSON.stringify(data));
+  }
+  getCarts() {
+    return JSON.parse(localStorage.getItem(this.cart));
+  }
+  clearCarts() {
+    localStorage.removeItem(this.cart);
+  }
+  getAuth() {
+    return JSON.parse(localStorage.getItem(this.auth));
+  }
+  setAuth(data) {
+    localStorage.setItem(this.auth, JSON.stringify(data));
+  }
+  clearAuth() {
+    localStorage.removeItem(this.auth);
+  }
+  setMemberId(data) {
+    localStorage.setItem(this.member, JSON.stringify(data));
+  }
+  getMemberId() {
+    return JSON.parse(localStorage.getItem(this.member));
+  }
+  clearMemberId() {
+    localStorage.removeItem(this.member);
+  }
+  clearAll() {
+    this.clearMemberId();
+    this.clearAuth();
+    this.clearCarts();
+  }
 }

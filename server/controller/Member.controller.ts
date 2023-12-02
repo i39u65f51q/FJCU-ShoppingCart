@@ -38,7 +38,6 @@ export class MemberController {
     router.post('/api/member', async (req: Request, res: Response) => {
       const { body } = req;
       const result: MemberDto[] | null = await this.model.getAuth(new MemberDto(body));
-      console.log(result);
       if (result && result.length > 0) {
         res.status(200).json({ success: false, content: result });
         return;
