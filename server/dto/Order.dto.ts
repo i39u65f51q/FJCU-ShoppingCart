@@ -8,11 +8,11 @@ export class OrderDto {
   public deliveryId: number;
   public transactionId: number;
   constructor(payload: unknown) {
-    this.id = get(payload, 'o_id', -1);
-    this.memberId = get(payload, 'm_id', -1);
+    this.id = get(payload, 'o_id') || get(payload, 'orderId') || -1;
+    this.memberId = get(payload, 'm_id') || get(payload, 'memberId') || -1;
     this.address = get(payload, 'address', '');
     this.status = get(payload, 'status', -1);
-    this.deliveryId = get(payload, 'deliverymethodId', -1);
-    this.transactionId = get(payload, 'transactiontypeId', -1);
+    this.deliveryId = get(payload, 'deliverymethodid', -1) || get(payload, 'deliveryId') || -1;
+    this.transactionId = get(payload, 'transactiontypeid') || get(payload, 'transactionId') || -1;
   }
 }

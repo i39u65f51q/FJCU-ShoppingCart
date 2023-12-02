@@ -18,8 +18,11 @@
   請求路徑：http://localhost:3200/api/
   ex: http://localhost:3200/api/member/1 取得編號 1 會員資料
 
+- 共用頁面：
+  1. 登入頁面 page/login 完成
+  2. 註冊頁面 page/register 完成
 - 使用者頁面路徑：
-  1. 編輯個人資料 page/member
+  1. 編輯個人資料 page/member 完成
   2. 訂單紀錄：page/order
   3. 商品主頁面 : page/main
 - 管理員頁面路徑：

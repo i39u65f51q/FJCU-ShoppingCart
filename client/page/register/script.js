@@ -1,43 +1,60 @@
 //註冊頁面
-import { toLogin } from '../common.js';
-
-const account = document.querySelector('.account');
-const pxwd = document.querySelector('.pxwd');
-const username = document.querySelector('.name');
-const phone = document.querySelector('.phone');
-const returnBtn = document.querySelector('.return');
-const form = document.querySelector('form');
+import { RouterService } from '../../router/router.js';
+import { MemberService } from '../../service/Member.js';
 
 window.addEventListener('load', () => {
-  reset();
+  const body = document.querySelector('body');
+  const module = new RegisterModule(body);
 });
 
-returnBtn.addEventListener('click', e => {
-  e.preventDefault();
-
-  toLogin();
-});
-
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  if (!isValueOk()) {
-    alert('註冊失敗：資料不得為空');
-    return;
+class RegisterModule {
+  constructor(container) {
+    this.router = new RouterService();
+    this.member = new MemberService();
+    this.returnHandler(container);
+    this.submitHandler(container);
   }
+  returnHandler(container) {
+    const returnBtn = container.querySelector('.return');
+    returnBtn.addEventListener('click', e => {
+      e.preventDefault();
+      this.router.toLogin();
+    });
+  }
+  submitHandler(container) {
+    const form = container.querySelector('form');
+    const phone = container.querySelector('.phone');
+    const name = container.querySelector('.name');
+    const pxwd = container.querySelector('.pxwd');
+    const account = container.querySelector('.account');
 
-  //TODO: CALL申請帳號API
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!this.checkValue(account, pxwd, name, phone)) {
+        alert('註冊失敗：資料不得為空');
+        return;
+      }
 
-  alert('註冊帳號成功');
-  toLogin();
-});
-
-function isValueOk() {
-  return account.value && pxwd.value && username.value && phone.value;
-}
-
-function reset() {
-  account.value = '';
-  pxwd.value = '';
-  username.value = '';
-  phone.value = '';
+      //註冊帳號API
+      const payload = {
+        account: account.value,
+        password: pxwd.value,
+        phone: phone.value,
+        name: name.value,
+      };
+      const result = await this.member.addMember(payload);
+      //檢查資料庫是否存在相同帳號
+      if (result.length > 0) {
+        this.account.value = '';
+        this.pxwd.value = '';
+        alert('此帳號已存在');
+        return;
+      }
+      alert('註冊帳號成功，返回登入頁登入');
+      this.router.toLogin();
+    });
+  }
+  checkValue(account, pxwd, name, phone) {
+    return account.value !== '' && pxwd.value !== '' && name.value !== '' && phone.value !== '';
+  }
 }

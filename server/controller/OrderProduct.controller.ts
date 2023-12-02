@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { OrderProductModel } from '../model/OrderProduct';
+import { OrderProductDto } from '../dto/OrderProduct.dto';
 
 export class OrderProductController {
   private readonly model: OrderProductModel;
@@ -8,15 +9,15 @@ export class OrderProductController {
     this.api(router);
   }
   private api(router: Router): void {
-    router.get('/api/order-product', (req: Request, res: Response) => {
-      const mock: any[] = [];
-      res.status(200).json({ success: true, content: mock });
+    router.get('/api/order-product', async (req: Request, res: Response) => {
+      const result: OrderProductDto[] = await this.model.getAll();
+      res.status(200).json({ success: true, content: result });
     });
-    router.get('/api/order-product/:orderId', (req: Request, res: Response) => {
-      const { orderId } = req.params;
 
-      const mock: any[] = [];
-      res.status(200).json({ success: true, content: mock });
+    router.get('/api/order-product/:memberId', async (req: Request, res: Response) => {
+      const { memberId } = req.params;
+      const result: OrderProductDto[] = await this.model.get(Number(memberId));
+      res.status(200).json({ success: true, content: result });
     });
   }
 }

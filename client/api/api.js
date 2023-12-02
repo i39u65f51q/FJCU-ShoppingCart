@@ -1,4 +1,4 @@
-import { GET, POST, PATCH, DELETE } from './api.js';
+import { GET, POST, PATCH, DELETE } from './fetch.js';
 
 const apiUrl = 'http://localhost:3000/api/';
 
@@ -7,7 +7,7 @@ export async function checkAuth(payload) {
   return await POST(apiUrl + 'auth', payload);
 }
 export async function getMembers() {
-  return await GET(apiUrl + 'member');
+  return await GET(apiUrl + 'members');
 }
 export async function getMember(memberId) {
   return await GET(apiUrl + 'member/' + memberId);

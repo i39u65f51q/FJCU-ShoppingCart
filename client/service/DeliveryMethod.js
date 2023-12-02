@@ -1,8 +1,10 @@
-import * as fetch from '../lib/fetch.js';
-
-export async function getDeliveryMethod() {
-  const res = await fetch.getDeliveryMethod();
-  const { success, content } = res;
-  if (!success) return [];
-  return content;
+import * as api from '../api/api.js';
+export class DeliveryMethodService {
+  constructor() {}
+  async getDeliveryMethod() {
+    const res = await api.getDeliveryMethod();
+    const { success, content } = res;
+    if (!success) return [];
+    return content;
+  }
 }

@@ -11,13 +11,8 @@ export class DeliveryMethodController {
 
   private api(router: Router): void {
     router.get('/api/delivery', async (req: Request, res: Response) => {
-      // const result: DeliveryMethodDto[] = await this.model.getAll();
-      //TODO:
-      const mock: DeliveryMethodDto[] = [
-        { id: 1, name: '7-11店到店' },
-        { id: 2, name: '宅配' },
-      ];
-      res.status(200).json({ success: true, content: mock });
+      const result: DeliveryMethodDto[] = await this.model.getAll();
+      res.status(200).json({ success: true, content: result });
     });
   }
 }
