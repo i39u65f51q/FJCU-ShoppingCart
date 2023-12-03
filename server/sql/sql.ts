@@ -1,38 +1,33 @@
 import mysql, { FieldInfo, MysqlError } from 'mysql';
 import { SQLStatement } from 'sql-template-strings';
 
-//FIXME:
 export class SQL {
   private readonly mysql: mysql.Connection;
   constructor() {
     this.mysql = mysql.createConnection({
       host: 'localhost',
       user: 'root',
-      password: 'eric0129',
-      database: 'new_schema',
+      password: '1234',
+      database: 'buygo',
       port: 3306,
     });
   }
 
-  public async query(query: SQLStatement): Promise<unknown | unknown[]> {
-    return new Promise(async (res, rej) => {
-      const isConnected: boolean = await this.connect();
-      if (!isConnected) return;
-      this.mysql.query(query, (err: MysqlError | null, results?: any, fields?: FieldInfo[]) => {
+  public query(query: SQLStatement): Promise<unknown | unknown[]> {
+    return new Promise((resolve, reject) => {
+      this.mysql.connect((err: MysqlError) => {
         if (err) {
-          rej(err.message);
+          reject(err);
           return;
         }
-        res(results);
-      });
-      this.mysql.end();
-    });
-  }
-
-  private async connect(): Promise<boolean> {
-    return new Promise(async (res, rej) => {
-      this.mysql.connect((err: MysqlError) => {
-        err ? rej(false) : res(true);
+        this.mysql.query(query, (error: MysqlError | null, results?: any) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        });
+        this.mysql.end();
       });
     });
   }

@@ -14,65 +14,63 @@ body {
   background-color: white;
   padding: 40px;
   border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 统一阴影样式 */
   max-width: 600px;
-  width: 100%;
+  width: 80%; /* 调整为80%以提高响应性 */
   box-sizing: border-box;
+  margin: 20px;
 }
 
-h4 {
+.form h4 {
   color: #333;
-  font-size: 2rem;
+  font-size: 2.2rem;
   text-align: center;
   margin-bottom: 30px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
 .form div {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   display: flex;
-  flex-direction: column;
-  align-items: center; 
-  margin-bottom: 20px;
-  width: 100%; 
+  align-items: center; /* 保持水平对齐 */
 }
 
-input[type="text"] {
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
+.form input[type="text"] {
+  border: 2px solid #ccc; /* 统一边框样式 */
+  border-radius: 8px; /* 统一圆角样式 */
+  padding: 12px;
   width: 100%;
   box-sizing: border-box;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="text"]:focus {
+.form input[type="text"]:focus {
   border-color: #2193b0;
   box-shadow: 0 2px 6px rgba(0,123,255,0.3);
   outline: none;
 }
 
-input[type="submit"], button {
+.form input[type="submit"], .form button {
   background-color: #2193b0;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 12px 20px;
+  border-radius: 8px;
+  padding: 14px 22px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   width: 100%;
+  font-size: 1rem;
 }
 
-input[type="submit"]:hover, button:hover {
+.form input[type="submit"]:hover {
   background-color: #6dd5ed;
   transform: translateY(-2px);
 }
 
 span {
-  color: #fff;
-  font-size: 0.9rem;
-  text-align: left;
+  color: #121313; /* 统一字体颜色 */
+  font-size: 1rem; /* 统一字体大小 */
+  text-align: center; /* 调整为居中对齐 */
   display: block;
   margin-top: 10px;
-  text-align: center;
 }

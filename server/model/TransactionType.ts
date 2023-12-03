@@ -6,7 +6,7 @@ export class TransactionTypeModel {
   constructor() {}
 
   public async getAll(): Promise<TransactionTypeDto[]> {
-    const sqlString: SQLStatement = sql`SELECT * FROM new_schema.transactiontype; `;
+    const sqlString: SQLStatement = sql`SELECT * FROM buygo.transactiontype; `;
     const data: unknown | unknown[] = await new SQL().query(sqlString);
     if (!Array.isArray(data)) return [];
     return data.map((d: unknown) => new TransactionTypeDto(d));

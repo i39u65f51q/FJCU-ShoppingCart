@@ -18,6 +18,7 @@ body {
   max-width: 600px;
   width: 100%;
   box-sizing: border-box;
+  margin: 20px;
 }
 
 h4 {
@@ -30,6 +31,8 @@ h4 {
 
 .form div {
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 input[type="text"] {
@@ -64,9 +67,9 @@ input[type="submit"]:hover, button:hover {
 }
 
 span {
-  color: #fff;
-  font-size: 0.9rem;
-  text-align: left;
+  color: #fff; /* 更改字体颜色为白色 */
+  font-size: 0.9rem; /* 统一字体大小 */
+  text-align: left; /* 文本左对齐 */
   display: block;
   margin-top: 10px;
 }

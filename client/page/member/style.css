@@ -18,9 +18,13 @@ body {
   max-width: 600px;
   width: 100%;
   box-sizing: border-box;
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-h4 {
+.form h4 {
   color: #333;
   font-size: 2rem;
   text-align: center;
@@ -30,13 +34,16 @@ h4 {
 
 .form div {
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 确保标签和输入框之间有间隔 */
 }
 
 input[type="text"] {
   border: 2px solid #ddd;
   border-radius: 5px;
   padding: 10px;
-  width: 100%;
+  width: calc(100% - 120px); /* 考虑标签宽度 */
   box-sizing: border-box;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -47,9 +54,9 @@ input[type="text"]:focus {
   outline: none;
 }
 
-input[type="submit"], button {
+input[type="submit"] {
   background-color: #2193b0;
-  color: white;
+  color: rgb(243, 237, 237);
   border: none;
   border-radius: 5px;
   padding: 12px 20px;
@@ -58,15 +65,14 @@ input[type="submit"], button {
   width: 100%;
 }
 
-input[type="submit"]:hover, button:hover {
+input[type="submit"]:hover {
   background-color: #6dd5ed;
   transform: translateY(-2px);
 }
 
 span {
-  color: #fff;
+  color: #080808;
   font-size: 0.9rem;
-  text-align: left;
   display: block;
   margin-top: 10px;
 }
