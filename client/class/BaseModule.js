@@ -36,7 +36,7 @@ export class BaseModule {
       </div>
       <div style="width:50%; display:flex; gap:1rem; justify-content:flex-end">  
         <nav style="display:flex; align-items:center;gap:1rem;">
-          <span class="order-manage-page">訂單管理</span>
+          <span class="order-page">訂單管理</span>
           <span class="product-page">商品管理</span>
         </nav>
         <button class="logout">登出</button>
@@ -96,12 +96,6 @@ export class BaseModule {
     if (member) {
       member.addEventListener('click', () => {
         this.router.toMember();
-      });
-    }
-    const orderManager = document.querySelector('.order-manage-page');
-    if (orderManager) {
-      orderManager.addEventListener('click', () => {
-        this.router.toOrderManager();
       });
     }
   }
