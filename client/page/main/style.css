@@ -1,6 +1,98 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+body, html {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  background: linear-gradient(to right, #6dd5ed, #2193b0);
+  color: #333;
+  overflow-x: hidden;
+}
+
+.header {
+  width: 100%;
+  height: 50px;
+  background-color: #6dd5ed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 70px;
+  padding: 0 20px;
+}
+
+.products-container {
+  width: calc(80% - 15px); /* 增加宽度 */
+  background-color: #ffffffcc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 50px;
+}
+
+.carts-container {
+  width: calc(20% - 15px); /* 显著减少宽度 */
+  background-color: #ffffffcc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  bottom: 20px;
+  overflow-y: auto;
+}
+
+h4 {
+  color: #333;
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: #eee;
+  padding: 1rem 0;
+}
+
+input[type="text"], select, button {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #2193b0;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100px;
+}
+
+button:hover {
+  background-color: #6dd5ed;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .products-container, .carts-container {
+    width: 100%;
+    margin: 0;
+  }
+
+  .carts-container {
+    position: static;
+    margin-top: 20px;
+  }
 }

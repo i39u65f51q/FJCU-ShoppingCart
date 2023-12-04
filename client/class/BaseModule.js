@@ -29,37 +29,30 @@ export class BaseModule {
 
   renderManagerHeader() {
     const header = `
-    <header style="width:100%; display:flex; justify-content:space-between;align-items=center; padding: 1rem 2rem; height:50px; position:fixed; top:0; left:0; right:0;background-color:#677891;box-shadow:2px 3px 3px rgba(0,0,0,0.2);z-index:99">
-      <div style="width:50%; ">
-        <h2 style="text-align=center; font-size:1.2rem">BuyGo</h2>  
-      </div>
-      <div style="width:50%; display:flex; gap:1rem; justify-content:flex-end">  
-        <nav style="display:flex; align-items:center;gap:1rem;">
-          <span class="order-manage-page">訂單管理</span>
-          <span class="product-page">商品管理</span>
-        </nav>
-        <button class="logout">登出</button>
-      </div>
-    <header>  
+    <header style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 60px; position: fixed; top: 0; left: 0; right: 0; background-color: #6dd5ed; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 99">
+    <h2 style="flex-grow: 0; text-align: left; font-size: 1.5rem; color: white; margin: 0;">BuyGo</h2>  
+      <nav style="flex-grow: 1; display: flex; justify-content: flex-end; align-items: center; gap: 1rem; margin-right: 5%;">
+        <span class="main-page" style="cursor: pointer; color: white; font-size: 1rem;">商品頁面</span>        
+        <span class="order-page" style="cursor: pointer; color: white; font-size: 1rem;">訂單紀錄</span>
+        <span class="member-page" style="cursor: pointer; color: white; font-size: 1rem;">編輯個人資料</span>        
+        <button class="logout" style="background-color: white; color: #6dd5ed; border: 1px solid #6dd5ed; border-radius: 4px; padding: 5px 10px; cursor: pointer;">登出</button>
+      </nav>
+    </header>
     `;
     return header;
   }
 
   renderUserHeader() {
     const header = `
-    <header style="width:100%; display:flex; justify-content:space-between;align-items=center; padding: 1rem 2rem; height:50px; position:fixed; top:0; left:0; right:0;background-color:#677891;box-shadow:2px 3px 3px rgba(0,0,0,0.2); z-index:99">
-      <div style="width:50%; ">
-      <h2 style="text-align=center; font-size:1.2rem">BuyGo</h2>  
-      </div>
-      <div style="width:50%; display:flex; gap:1rem; justify-content:flex-end; align-items:center;">  
-        <nav style="display:flex; align-items:center;gap:1rem;">
-        <span class="main-page" style="cursor:pointer">商品頁面</span>        
-        <span class="order-page" style="cursor:pointer">訂單紀錄</span>
-        <span class="member-page" style="cursor:pointer">編輯個人資料</span>        
-        </nav>
-        <button class="logout" style="width:70px;height:25px; ">登出</button>
-      </div>
-    <header>  
+    <header style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 60px; position: fixed; top: 0; left: 0; right: 0; background-color: #6dd5ed; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 99">
+    <h2 style="flex-grow: 0; text-align: left; font-size: 1.5rem; color: white; margin: 0;">BuyGo</h2>  
+    <nav style="flex-grow: 1; display: flex; justify-content: flex-end; align-items: center; gap: 1rem; margin-right: 5%;">
+        <span class="main-page" style="cursor: pointer; color: white; font-size: 1rem;">商品頁面</span>        
+        <span class="order-page" style="cursor: pointer; color: white; font-size: 1rem;">訂單紀錄</span>
+        <span class="member-page" style="cursor: pointer; color: white; font-size: 1rem;">編輯個人資料</span>        
+        <button class="logout" style="background-color: white; color: #6dd5ed; border: 1px solid #6dd5ed; border-radius: 4px; padding: 5px 10px; cursor: pointer;">登出</button>
+      </nav>
+  </header>
     `;
     return header;
   }
