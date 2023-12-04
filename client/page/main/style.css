@@ -11,7 +11,7 @@ body, html {
 
 .header {
   width: 100%;
-  height: 50px;
+  height: 60px; /* 略微增加高度 */
   background-color: #6dd5ed;
   display: flex;
   justify-content: center;
@@ -20,52 +20,43 @@ body, html {
   top: 0;
   left: 0;
   right: 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   z-index: 99;
 }
 
 .container {
   display: flex;
   justify-content: space-between;
-  margin-top: 70px;
-  padding: 0 20px;
-}
-
-.products-container {
-  width: calc(80% - 15px); /* 增加宽度 */
-  background-color: #ffffffcc;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-top: 50px;
+  margin-top: 80px; /* 调整上边距 */
+  padding: 0 30px; /* 增加左右内边距 */
 }
 
 .carts-container {
-  width: calc(20% - 15px); /* 显著减少宽度 */
+  width: 18%; /* 减小购物车宽度 */
   background-color: #ffffffcc;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 25px; /* 增加内边距 */
+  border-radius: 12px; /* 调整圆角 */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   position: fixed;
-  top: 70px;
-  right: 20px;
-  bottom: 20px;
+  top: 80px;
+  right: 30px;
+  bottom: 30px;
   overflow-y: auto;
 }
 
 h4 {
   color: #333;
-  font-size: 1.5rem;
+  font-size: 1.7rem; /* 增加字体大小 */
   text-align: center;
   background-color: #eee;
-  padding: 1rem 0;
+  padding: 20px 0; /* 增加垂直内边距 */
 }
 
 input[type="text"], select, button {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: 12px;
+  border: 2px solid #ccc; /* 更细致的边框 */
+  border-radius: 6px; /* 调整圆角 */
+  font-size: 1.2rem; /* 增加字体大小 */
 }
 
 button {
@@ -73,11 +64,13 @@ button {
   color: white;
   border: none;
   cursor: pointer;
-  width: 100px;
+  width: 140px; /* 增加按钮宽度 */
+  transition: background-color 0.3s, transform 0.2s; /* 添加过渡效果 */
 }
 
 button:hover {
   background-color: #6dd5ed;
+  transform: translateY(-3px); /* 悬停时微小移动 */
 }
 
 @media (max-width: 768px) {
@@ -87,12 +80,12 @@ button:hover {
   }
 
   .products-container, .carts-container {
-    width: 100%;
-    margin: 0;
+    width: 90%; /* 在小屏幕上减小宽度 */
+    margin: 10px 0; /* 添加外边距 */
   }
 
   .carts-container {
     position: static;
-    margin-top: 20px;
+    margin-top: 30px;
   }
 }
