@@ -1,6 +1,92 @@
+/* 510171292 吳家驊 , 511172176 李則霖 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: 14px;
+}
+
+.carts-container {
+  width: 30%;
+  height: calc(100% - 50px);
+  position: fixed;
+  right: 0;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffffcc;
+  border-left: 1px solid #eee;
+}
+.list-title {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #eee;
+}
+
+.carts-wrap {
+  min-height: 60%;
+  max-height: 60%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.check-title {
+  width: 100%;
+  height: 50px;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 0.3rem;
+}
+
+.delivery-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  justify-content: center;
+}
+.delivery-item {
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+
+.address-wrap {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem;
+  justify-content: center;
+}
+
+.trans-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.products-container {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 50px;
+  padding: 1rem;
 }

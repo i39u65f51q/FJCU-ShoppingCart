@@ -1,8 +1,9 @@
+//508062334 陳彥志
 import { AUTH_USER, AUTH_MANAGER } from '../enum/auth.js';
 import { StorageService } from '../lib/localstorage.js';
 import { RouterService } from '../router/router.js';
 
-//除了登入/註冊頁面，都會繼承BaseModule
+//除了登入/註冊頁面，都會繼承BaseModule，驗證身份/Header顯示
 export class BaseModule {
   constructor(headerElement) {
     this.header = headerElement;
@@ -15,18 +16,18 @@ export class BaseModule {
 
   checkIdentity() {
     if (!this.auth) {
-      this.router.toLogin();
       this.storage.clearAll();
+      this.router.toLogin();
       return;
     }
     if (this.auth === AUTH_USER) {
       this.header.innerHTML = this.renderUserHeader();
     } else if (this.auth === AUTH_MANAGER) {
-      this.header.innerHTML = this.renderUserHeader();
+      this.header.innerHTML = this.renderManagerHeader();
     }
     this.headerRouterEvent();
   }
-
+  //管理員Header：編輯商品、修改訂單狀態
   renderManagerHeader() {
     const header = `
     <header style="width:100%; display:flex; justify-content:space-between;align-items=center; padding: 1rem 2rem; height:50px; position:fixed; top:0; left:0; right:0;background-color:#677891;box-shadow:2px 3px 3px rgba(0,0,0,0.2);z-index:99">
@@ -44,7 +45,7 @@ export class BaseModule {
     `;
     return header;
   }
-
+  //使用者Header：商品頁面、編輯個人資料、訂單紀錄查詢
   renderUserHeader() {
     const header = `
     <header style="width:100%; display:flex; justify-content:space-between;align-items=center; padding: 1rem 2rem; height:50px; position:fixed; top:0; left:0; right:0;background-color:#677891;box-shadow:2px 3px 3px rgba(0,0,0,0.2); z-index:99">

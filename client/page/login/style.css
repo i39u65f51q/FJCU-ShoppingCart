@@ -5,19 +5,19 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-
 .form {
+  width: fit-content;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  justify-content: center;
-  margin-top: 70px;
 }
 
 .flex {
   display: flex;
 }
 
-.justify-center {
-  justify-content: center;
+.account,
+.pxwd {
+  width: 200px;
+  height: 20px;
 }

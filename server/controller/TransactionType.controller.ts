@@ -1,3 +1,4 @@
+//508062334 陳彥志
 import { Router, Request, Response } from 'express';
 import { TransactionTypeModel } from '../model/TransactionType';
 import { TransactionTypeDto } from '../dto/TransactionType.dto';
@@ -9,6 +10,7 @@ export class TransactionTypeController {
     this.api(router);
   }
   private api(router: Router) {
+    //取得交易類型
     router.get('/api/transaction', async (req: Request, res: Response) => {
       const result: TransactionTypeDto[] = await this.model.getAll();
       res.status(200).json({ success: true, content: result });

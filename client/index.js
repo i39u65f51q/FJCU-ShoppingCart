@@ -1,14 +1,26 @@
-//1. 檢查LocalStorage是否有Token，無Token導向登入頁面
+//508062334 陳彥志
+//1. 檢查LocalStorage是否有Auth，無Auth導向登入頁面 註：Auth代替Token
 //2. 有Token檢查權限，決定使用者顯示UI
-import * as storage from './lib/localstorage.js';
+import { AUTH_MANAGER, AUTH_USER } from './enum/auth.js';
+import { StorageService } from './lib/localstorage.js';
 
-//Token驗證
 window.addEventListener('load', () => {
-  const auth = storage.getAuth();
-
-  if (auth) {
-    window.location = 'page/main/index.html';
-  } else {
-    window.location = 'page/login/index.html';
-  }
+  const module = new AppModule();
 });
+//身份驗證決定路由導向
+class AppModule {
+  constructor() {
+    this.storage = new StorageService();
+    const auth = this.storage.getAuth();
+    if (!auth) {
+      window.location.href = './page/login/index.html';
+    } else if (auth === AUTH_MANAGER) {
+      window.location.href = './page/order-manager/index.html';
+    } else if (auth === AUTH_USER) {
+      window.location.href = './page/main/index.html';
+    } else {
+      this.storage.clearAll();
+      window.location.href = './page/login/index.html';
+    }
+  }
+}

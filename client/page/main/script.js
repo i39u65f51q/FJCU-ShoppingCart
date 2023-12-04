@@ -1,8 +1,10 @@
+//508062334 陳彥志
 //使用者商品主頁面
 import { ProductService } from '../../service/Product.js';
 import { DeliveryMethodService } from '../../service/DeliveryMethod.js';
 import { TransactionTypeService } from '../../service/TransactionType.js';
 import { BaseModule } from '../../class/BaseModule.js';
+import { AUTH_MANAGER } from '../../enum/auth.js';
 
 window.addEventListener('load', () => {
   const body = document.querySelector('body');
@@ -12,6 +14,11 @@ class MainModule extends BaseModule {
   constructor(container) {
     const header = container.querySelector('.header');
     super(header);
+    //如果管理員進入此頁面，導向到編輯訂單頁面
+    if (this.auth === AUTH_MANAGER) {
+      this.router.toOrder();
+      return;
+    }
     this.carts = this.storage.getCarts() || [];
     this.products = [];
     this.product = new ProductService();
