@@ -21,7 +21,7 @@ export class OrderProductModel {
   }
 
   public async insert(data: OrderProductDto): Promise<number> {
-    const sqlString: SQLStatement = sql`INSERT INTO new_schema.orderproduct (o_id, p_id, orderquantity, orderpriceperitem, productquantity, total) VALUES (${data.orderId}, ${data.productId}, 0, ${data.eachProductPrice}, ${data.quantity}, ${data.total})`;
+    const sqlString: SQLStatement = sql`INSERT INTO new_schema.orderproduct (o_id, p_id, orderquantity, orderpriceperitem, productquantity) VALUES (${data.orderId}, ${data.productId}, 0, ${data.eachProductPrice}, ${data.quantity})`;
     const result: unknown | unknown[] = await new SQL().query(sqlString);
     const insertId: number = (result as any).insertId;
     return insertId;

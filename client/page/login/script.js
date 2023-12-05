@@ -39,7 +39,7 @@ class LoginModule {
       if (auth === AUTH_USER) {
         this.router.toMain(); //主頁面
       } else if (auth === AUTH_MANAGER) {
-        this.router.toOrderManager(); //訂單管理頁面
+        this.router.toOrder(); //訂單管理頁面
       }
     });
   }

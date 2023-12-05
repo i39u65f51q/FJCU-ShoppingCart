@@ -36,38 +36,64 @@ class OrderModule extends BaseModule {
     this.render(container);
   }
   async render(container) {
+    const pageTitle = container.querySelector('.page-title');
     const promises = [
-      this.opService.getOrderProduct(this.memberId), //取得使用者所以訂單商品
-      this.oService.getOrder(this.memberId), //取得使用者所有訂單資訊
       this.pService.getProducts(), //取得所有商品資訊
       this.tService.getTransactionType(), //取得所有交易方式
       this.dService.getDeliveryMethod(), //取得所有運送方式
     ];
+    if (this.auth === AUTH_USER) {
+      pageTitle.textContent = '訂單紀錄';
+      //取得使用者「訂單商品」與「訂單資訊」
+      promises.push(this.opService.getOrderProduct(this.memberId), this.oService.getOrder(this.memberId)); //取得使用者訂單紀錄
+    } else if (this.auth === AUTH_MANAGER) {
+      pageTitle.textContent = '訂單管理';
+      //取得所有人「訂單商品」與「訂單資訊」
+      promises.push(this.opService.getOrderProducts(), this.oService.getOrders());
+    }
     // 等待API取得全部資料
     const results = await Promise.allSettled(promises);
-    this.orderProducts = results[0].value;
-    this.orders = results[1].value;
-    this.products = results[2].value;
-    this.transactions = results[3].value;
-    this.deliverys = results[4].value;
+    this.products = results[0].value;
+    this.transactions = results[1].value;
+    this.deliverys = results[2].value;
+    this.orderProducts = results[3].value;
+    this.orders = results[4].value;
 
     const order_container = container.querySelector('.container');
+
     this.orders.forEach(order => {
       const filterOrderProducts = this.orderProducts.filter(op => op.orderId === order.id);
+      //渲染訂單資訊
       order_container.innerHTML += this.renderOrderItem(order, filterOrderProducts);
-      const productWrap = order_container.querySelector('.order-product-wrap');
-      filterOrderProducts.forEach(orderProduct => {
-        productWrap.innerHTML += this.renderProducts(orderProduct);
+      const productWraps = order_container.querySelectorAll('.order-product-wrap');
+      //渲染訂單內產品資訊
+      filterOrderProducts.forEach(filterOrderProduct => {
+        productWraps[productWraps.length - 1].innerHTML += this.renderProducts(filterOrderProduct);
       });
     });
+    //管理員新增可點擊OrderItem來改變訂單狀態
+    if (this.auth === AUTH_MANAGER) {
+      const itemDOMs = order_container.querySelectorAll('.order-item');
+      itemDOMs.forEach(dom => {
+        dom.classList.add('cursor'); //鼠標樣式
+        dom.addEventListener('click', e => {
+          const orderId = e.currentTarget.dataset.id; //取得html內得data-id屬性
+          const status = e.currentTarget.dataset.status;
+          this.dialogEvent(orderId, Number(status));
+        });
+      });
+    }
   }
+  //渲染單筆訂單資訊
   //資料格式 order:{id:number, transactionId:number, address:number, deliveryId:number, status:number}
   renderOrderItem(order, filterOrderProducts) {
     const counts = filterOrderProducts.reduce((acc, curr) => (acc += curr.quantity), 0);
     const total = filterOrderProducts.reduce((acc, curr) => (acc += curr.quantity * curr.eachProductPrice), 0);
     const div = `
-    <div class="order-item">
-      <div class="title padding">訂單編號：${order.id}</div>
+    <div class="order-item" data-id="${order.id}" data-status="${order.status}">
+      <div class="title padding ${this.getStatusBgStyle(order.status)}">訂單編號：${order.id} ${
+      this.auth === AUTH_MANAGER ? `/ 會員編號:${order.memberId}` : ''
+    }</div>
       <div class="order-detail-wrap padding">
         <div class="order-detail">配送方式：${this.getDelivery(order.deliveryId).name} / 付款方式：${
       this.getTransaction(order.transactionId).name
@@ -82,6 +108,7 @@ class OrderModule extends BaseModule {
   `;
     return div;
   }
+  //渲染單筆訂單內商品資訊
   //data:{orderId:number, productId:number, quantity:number, eachProductPrice:number}
   renderProducts(orderProduct) {
     const div = `
@@ -92,6 +119,38 @@ class OrderModule extends BaseModule {
     return div;
   }
 
+  dialogEvent(orderId, status) {
+    const dialog = document.querySelector('dialog');
+    dialog.showModal();
+    const title = dialog.querySelector('.title');
+    title.textContent = `修改訂單編號:${orderId}`;
+    const selectStatus = dialog.querySelector('#select-status');
+    const closeBtn = dialog.querySelector('.dialog-cancel');
+    const confirmBtn = dialog.querySelector('.dialog-confirm');
+    //下拉選單，預設數值
+    selectStatus.value = status;
+    selectStatus.addEventListener('change', e => {
+      status = Number(e.target.value);
+    });
+    //關閉按鈕
+    closeBtn.addEventListener('click', () => {
+      dialog.close();
+    });
+    //確認按鈕
+    confirmBtn.addEventListener('click', async e => {
+      e.preventDefault();
+      //呼叫更新訂單狀態API
+      const success = await this.oService.updateOrder({ orderId, status });
+      if (success) {
+        alert(`訂單編號:${orderId} 狀態修改成功`);
+      } else {
+        alert(`訂單編號:${orderId} 狀態修改失敗`);
+      }
+      location.reload(); //畫面刷新
+    });
+  }
+
+  //取得Status
   getStatus(status) {
     switch (status) {
       case ORDER_PROCESSING:
@@ -106,12 +165,30 @@ class OrderModule extends BaseModule {
         '狀態未知';
     }
   }
+
+  getStatusBgStyle(status) {
+    switch (status) {
+      case ORDER_PROCESSING:
+        return 'processing';
+      case ORDER_DELIVERY:
+        return 'deliverying';
+      case ORDER_ARRIVED:
+        return 'arrived';
+      case ORDER_FINISHED:
+        return 'finished';
+      default:
+        '狀態未知';
+    }
+  }
+  //取得商品
   getProduct(productId) {
     return this.products.find(p => p.id === productId);
   }
+  //取得交易方式
   getTransaction(tId) {
     return this.transactions.find(t => t.id === tId);
   }
+  //取得運送方式
   getDelivery(dId) {
     return this.deliverys.find(d => d.id === dId);
   }

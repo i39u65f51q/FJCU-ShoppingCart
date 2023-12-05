@@ -45,7 +45,7 @@ export async function addOrder(payload) {
   return await POST(apiUrl + 'order', payload);
 }
 export async function updateOrder(payload) {
-  return await PATCH(apiUrl + 'order/' + payload.id, payload);
+  return await PATCH(apiUrl + 'order', payload);
 }
 export async function deleteOrder(id) {
   return await DELETE(apiUrl + 'order/' + id);

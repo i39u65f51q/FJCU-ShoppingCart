@@ -5,10 +5,12 @@
   box-sizing: border-box;
   font-size: 14px;
 }
+
 .form {
   width: fit-content;
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
   gap: 0.5rem;
 }
 

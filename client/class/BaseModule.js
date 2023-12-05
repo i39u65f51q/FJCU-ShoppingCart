@@ -36,10 +36,10 @@ export class BaseModule {
       </div>
       <div style="width:50%; display:flex; gap:1rem; justify-content:flex-end">  
         <nav style="display:flex; align-items:center;gap:1rem;">
-          <span class="order-page">訂單管理</span>
-          <span class="product-page">商品管理</span>
+          <span class="order-page" style="cursor:pointer">訂單管理</span>
+          <span class="product-page" style="cursor:pointer">商品管理</span>
         </nav>
-        <button class="logout">登出</button>
+        <button class="logout" style="width:70px;height:25px;">登出</button>
       </div>
     <header>  
     `;
@@ -73,25 +73,28 @@ export class BaseModule {
         this.storage.clearAll();
       });
     }
-
+    //主頁面（使用者）
     const main = document.querySelector('.main-page');
     if (main) {
       main.addEventListener('click', () => {
         this.router.toMain();
       });
     }
+    //訂單紀錄頁面（使用者、管理員）
     const order = document.querySelector('.order-page');
     if (order) {
       order.addEventListener('click', () => {
         this.router.toOrder();
       });
     }
-    const manage = document.querySelector('.manage-page');
-    if (manage) {
-      manage.addEventListener('click', () => {
-        this.router.toManager();
+    //編輯商品頁面（管理員）
+    const product = document.querySelector('.product-page');
+    if (product) {
+      product.addEventListener('click', () => {
+        this.router.toProduct();
       });
     }
+    //編輯個人資料（使用者）
     const member = document.querySelector('.member-page');
     if (member) {
       member.addEventListener('click', () => {
