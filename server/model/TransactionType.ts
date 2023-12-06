@@ -1,3 +1,4 @@
+//508062334 陳彥志 , 511172176 李則霖
 import { SQLStatement, SQL as sql } from 'sql-template-strings';
 import { TransactionTypeDto } from '../dto/TransactionType.dto';
 import { SQL } from '../sql/sql';

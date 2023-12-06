@@ -1,3 +1,4 @@
+//508062334 陳彥志
 import mysql, { FieldInfo, MysqlError } from 'mysql';
 import { SQLStatement } from 'sql-template-strings';
 

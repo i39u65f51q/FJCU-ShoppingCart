@@ -1,3 +1,4 @@
+//508062334 陳彥志
 import express, { Router, Express } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -19,10 +20,10 @@ function main(): void {
   new ProductController(router); //商品
   new DeliveryMethodController(router); //運送方式
 
-  app.use(bodyParser.json());
-  app.use(cors(), router);
+  app.use(bodyParser.json()); //API Body封包解析
+  app.use(cors(), router); //跨網域請求
 
-  app.listen(3000);
+  app.listen(3000); //PORT
   console.log('Server: run on port:3000');
 }
 main();

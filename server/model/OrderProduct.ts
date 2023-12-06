@@ -1,3 +1,4 @@
+//508062334 陳彥志 , 511172176 李則霖
 import { SQLStatement, SQL as sql } from 'sql-template-strings';
 import { OrderProductDto } from '../dto/OrderProduct.dto';
 import { SQL } from '../sql/sql';
@@ -20,7 +21,7 @@ export class OrderProductModel {
   }
 
   public async insert(data: OrderProductDto): Promise<number> {
-    const sqlString: SQLStatement = sql`INSERT INTO buygo.orderproduct (o_id, p_id, orderquantity, orderpriceperitem, productquantity, total) VALUES (${data.orderId}, ${data.productId}, 0, ${data.eachProductPrice}, ${data.quantity}, ${data.total})`;
+    const sqlString: SQLStatement = sql`INSERT INTO new_schema.orderproduct (o_id, p_id, orderquantity, orderpriceperitem, productquantity, total) VALUES (${data.orderId}, ${data.productId}, 0, ${data.eachProductPrice}, ${data.quantity}, ${data.total})`;
     const result: unknown | unknown[] = await new SQL().query(sqlString);
     const insertId: number = (result as any).insertId;
     return insertId;

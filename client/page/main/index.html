@@ -1,24 +1,22 @@
+<!-- 510171292 吳家驊 , 511172176 李則霖  -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>BuyGo</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <header class="header"></header>
     <main class="container" style="width: 100%; display: flex">
-      <div
-        class="products-container"
-        style="width: 70%; display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 50px; padding: 1rem"
-      >
+      <div class="products-container">
         <!-- 商品 -->
       </div>
       <div
         class="carts-container"
         style="
-          width: 31%;
+          width: 30%;
           height: calc(100% - 50px);
           position: fixed;
           right: 0;
@@ -40,7 +38,7 @@
           <div
             style="
               width: 100%;
-              height: 70px;
+              height: 50px;
               background-color: #eee;
               display: flex;
               align-items: center;
@@ -51,22 +49,22 @@
           </div>
           <div style="display: flex; flex-direction: column; justify-content: center; height: 100%; gap: 0.3rem">
             <!-- 運送方式 -->
-            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; justify-content: center">
-              <div style="display: flex; align-items: center; height: 30px">
+            <div class="delivery-wrap">
+              <div class="delivery-item">
                 <span>運送方式：</span
                 ><select name="" id="delivery"></select>
               </div>
               <!-- 結帳方式 -->
-              <div style="display: flex; align-items: center; justify-content: center">
+              <div class="trans-wrap">
                 <span>結帳方式：</span>
                 <select name="" id="transaction"></select>
               </div>
             </div>
-            <div style="padding: 0.5rem; display: flex; align-items: center; justify-content: center">
+            <div class="address-wrap">
               <span>地址：</span><input type="text" class="address" style="width: 65%" placeholder="請輸入送貨地址" />
             </div>
             <!-- 結算 -->
-            <div style="display: flex; align-items: center; gap: 2rem; padding: 0.5rem; justify-content: center">
+            <div class="result-wrap">
               <span>商品總數量：<span class="total-count"></span></span>
               <span>總金額：<span class="total-price"></span></span>
               <button class="send-order" style="width: 100px">送出訂單</button>

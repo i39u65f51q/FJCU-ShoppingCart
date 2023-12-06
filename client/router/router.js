@@ -1,3 +1,4 @@
+//508062334 陳彥志
 export class RouterService {
   constructor() {}
   toMain() {
@@ -14,9 +15,6 @@ export class RouterService {
   }
   toMember() {
     window.location.href = '../member/index.html';
-  }
-  toOrderManager() {
-    window.location.href = '../order-manager/index.html';
   }
   toProduct() {
     window.location.href = '../product/index.html';

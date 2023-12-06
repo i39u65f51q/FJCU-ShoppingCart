@@ -1,3 +1,4 @@
+//508062334 陳彥志
 //登入頁面
 import { RouterService } from '../../router/router.js';
 import { StorageService } from '../../lib/localstorage.js';
@@ -38,7 +39,7 @@ class LoginModule {
       if (auth === AUTH_USER) {
         this.router.toMain(); //主頁面
       } else if (auth === AUTH_MANAGER) {
-        this.router.toOrderManager(); //訂單管理頁面
+        this.router.toOrder(); //訂單管理頁面
       }
     });
   }

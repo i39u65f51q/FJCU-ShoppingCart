@@ -1,3 +1,4 @@
+//508062334 陳彥志
 import { GET, POST, PATCH, DELETE } from './fetch.js';
 
 const apiUrl = 'http://localhost:3000/api/';
@@ -44,7 +45,7 @@ export async function addOrder(payload) {
   return await POST(apiUrl + 'order', payload);
 }
 export async function updateOrder(payload) {
-  return await PATCH(apiUrl + 'order/' + payload.id, payload);
+  return await PATCH(apiUrl + 'order', payload);
 }
 export async function deleteOrder(id) {
   return await DELETE(apiUrl + 'order/' + id);
@@ -62,6 +63,6 @@ export async function getTransactionType() {
 export async function getOrderProducts() {
   return await GET(apiUrl + 'order-product');
 }
-export async function getOrderProduct(orderId) {
-  return await GET(apiUrl + 'order-product/' + orderId);
+export async function getOrderProduct(memberId) {
+  return await GET(apiUrl + 'order-product/' + memberId);
 }
