@@ -20,10 +20,9 @@ export class OrderProductModel {
     return data.map((d: unknown) => new OrderProductDto(d));
   }
 
-  public async insert(data: OrderProductDto): Promise<number> {
-    const sqlString: SQLStatement = sql`INSERT INTO new_schema.orderproduct (o_id, p_id, orderquantity, orderpriceperitem, productquantity) VALUES (${data.orderId}, ${data.productId}, 0, ${data.eachProductPrice}, ${data.quantity})`;
+  public async insert(data: OrderProductDto): Promise<boolean> {
+    const sqlString: SQLStatement = sql`INSERT INTO new_schema.orderproduct (o_id, p_id, orderpriceperitem, productquantity) VALUES (${data.orderId}, ${data.productId}, ${data.eachProductPrice}, ${data.quantity})`;
     const result: unknown | unknown[] = await new SQL().query(sqlString);
-    const insertId: number = (result as any).insertId;
-    return insertId;
+    return (result as any).affectedRows > 0 ? true : false;
   }
 }

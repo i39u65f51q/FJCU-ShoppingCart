@@ -13,7 +13,7 @@ export class OrderDto {
     this.memberId = get(payload, 'm_id') || get(payload, 'memberId') || -1;
     this.address = get(payload, 'address', '');
     this.status = get(payload, 'status', -1);
-    this.deliveryId = get(payload, 'deliverymethodid', -1) || get(payload, 'deliveryId') || -1;
+    this.deliveryId = get(payload, 'deliverymethodid') || get(payload, 'deliveryId') || -1;
     this.transactionId = get(payload, 'transactiontypeid') || get(payload, 'transactionId') || -1;
   }
 }

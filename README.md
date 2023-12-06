@@ -24,7 +24,7 @@
 - 使用者頁面路徑：
   1. 編輯個人資料 page/member 完成
   2. 訂單紀錄：page/order 完成
-  3. 商品主頁面 : page/main （缺少 API:新增訂單,更新商品數量
+  3. 商品主頁面 : page/main 完成
 - 管理員頁面路徑：
   1. 商品庫存管理：page/products （缺少 API:修改商品、新增商品、刪除商品
   2. 訂單管理頁面：page/order 完成

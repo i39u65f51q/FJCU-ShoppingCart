@@ -5,6 +5,7 @@ import { DeliveryMethodService } from '../../service/DeliveryMethod.js';
 import { TransactionTypeService } from '../../service/TransactionType.js';
 import { BaseModule } from '../../class/BaseModule.js';
 import { AUTH_MANAGER } from '../../enum/auth.js';
+import { OrderService } from '../../service/Order.js';
 
 window.addEventListener('load', () => {
   const body = document.querySelector('body');
@@ -22,6 +23,7 @@ class MainModule extends BaseModule {
     this.carts = this.storage.getCarts() || [];
     this.products = [];
     this.product = new ProductService();
+    this.order = new OrderService();
     this.deliveryMethod = new DeliveryMethodService();
     this.transactionTypes = new TransactionTypeService();
     this.orderInfo = {
@@ -34,7 +36,6 @@ class MainModule extends BaseModule {
         { pId: 1, count: 1, per_price: 10 },
         { pId: 1, count: 1, per_price: 10 },
       ],
-      total: -1,
     };
     this.submitHandler(container);
     this.renderProducts(container); //商品
@@ -51,29 +52,35 @@ class MainModule extends BaseModule {
         alert('購物車為空');
         return;
       }
+      const deliveryDOM = container.querySelector('#delivery');
+      this.orderInfo.deliveryId = Number(deliveryDOM.value);
+      const transactionDOM = container.querySelector('#transaction');
+      this.orderInfo.transactionId = Number(transactionDOM.value);
       const address = container.querySelector('.address');
       this.orderInfo.address = address.value;
+      if (this.orderInfo.address.trim() === '') {
+        alert('請輸入地址');
+        return;
+      }
       this.orderInfo.products = this.carts.map(cart => ({
-        pId: cart.id,
-        count: cart.count,
+        productId: cart.id,
+        quantity: cart.count,
         per_price: cart.per_price,
       }));
-
       if (confirm('確認是否送出訂單') == true) {
         if (this.orderInfo.memberId == -1) {
           alert('會員編號異常');
           return;
         }
 
-        /* TODO: CALL API 新增訂單
-          1. 建立訂單
-          2. 修改商品庫存
-        */
+        const result = await this.order.addOrder(this.orderInfo);
+        if (!result) {
+          alert('訂單建立失敗');
+          return;
+        }
+        alert('訂單已建立成功');
         this.storage.clearCarts();
-        this.carts = [];
-        address.value = '';
-        this.renderCarts();
-        this.renderProducts();
+        location.reload();
       }
     });
   }
@@ -180,7 +187,6 @@ class MainModule extends BaseModule {
 
     container.querySelector('.total-count').textContent = totalCount;
     container.querySelector('.total-price').textContent = totalPrice;
-    this.orderInfo.total = totalCount;
 
     //單一購物車資訊
     function renderCartItem(cartItem) {
@@ -212,10 +218,6 @@ class MainModule extends BaseModule {
     transactionTypes.forEach(l => {
       transactionElement.innerHTML += `<option value="${l.id}">${l.name}</option>`;
     });
-    transactionElement.addEventListener('change', e => {
-      const value = e.target.value;
-      this.orderInfo.transactionId = value;
-    });
   }
 
   async renderDelivery(container) {
@@ -224,9 +226,9 @@ class MainModule extends BaseModule {
     deliveryMethods.forEach(l => {
       deliveryElement.innerHTML += `<option value="${l.id}">${l.name}</option>`;
     });
-    deliveryElement.addEventListener('change', e => {
-      const value = e.target.value;
-      this.orderInfo.deliveryId = value;
-    });
+  }
+
+  getProduct(pId) {
+    return this.products.find(p => p.id === pId) | null;
   }
 }
