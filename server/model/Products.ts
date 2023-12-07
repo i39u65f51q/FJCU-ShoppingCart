@@ -21,7 +21,7 @@ export class ProductModel {
   }
 
   public async update(product: ProductDto): Promise<boolean> {
-    const sqlString: SQLStatement = sql`UPDATE new_schema.product SET p_Name = ${product.name}, price = ${product.price}  ,quantity = ${product.quantity} WHERE p_id = ${product.id};`;
+    const sqlString: SQLStatement = sql`UPDATE new_schema.product SET p_name = ${product.name}, quantity = ${product.quantity}, price = ${product.price} WHERE p_id = ${product.id};`;
     const result: unknown[] | unknown = await new SQL().query(sqlString);
     return (result as any).affectedRows > 0 ? true : false;
   }

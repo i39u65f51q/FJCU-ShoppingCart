@@ -20,6 +20,7 @@ class ProductModule extends BaseModule {
     this.product = new ProductService();
     this.products = [];
     this.renderProducts(container);
+    this.addEvent(container);
   }
   //渲染產品
   async renderProducts(body) {
@@ -61,6 +62,40 @@ class ProductModule extends BaseModule {
     </div>`;
     return item;
   }
+  //點擊新增商品按鈕事件
+  addEvent(container) {
+    const addBtn = container.querySelector('button.create');
+    addBtn.addEventListener('click', async () => {
+      const addDOM = container.querySelector('div.add-container');
+      addDOM.classList.add('active');
+      //點擊dialog內確認按鈕
+      addDOM.querySelector('.confirm').addEventListener('click', async event => {
+        const name = addDOM.querySelector('#name');
+        const price = addDOM.querySelector('#price');
+        const quantity = addDOM.querySelector('#quantity');
+        const payload = {
+          name: name.value,
+          price: price.value,
+          quantity: quantity.value,
+        };
+        //欄位檢查
+        if (!payload.name || !payload.price || !payload.quantity) {
+          alert('欄位不得為空');
+          return;
+        }
+        //新增商品API
+        const result = await this.product.addProduct(payload);
+        result ? alert('成功建立商品') : alert('建立商品失敗');
+        location.reload();
+      });
+      //點擊dialog內取消按鈕
+      addDOM.querySelector('.cancel').addEventListener('click', async event => {
+        event.preventDefault();
+        addDOM.classList.remove('active');
+      });
+    });
+  }
+
   //點擊更新按鈕事件
   updateEvent(container) {
     const updateBtns = container.querySelectorAll('button.confirm');
@@ -68,12 +103,13 @@ class ProductModule extends BaseModule {
       btn.addEventListener('click', async event => {
         const id = event.currentTarget.parentNode.parentNode.dataset.id;
         if (confirm(`是否更新編號:${id} 產品`)) {
-          //TODO: 選取id input DOM 取得數值
+          //選取id input DOM 取得數值
+          const { name, price, quantity } = this.getProductDOM(container, id);
           const payload = {
-            id,
-            name: '',
-            quantity: '',
-            price: '',
+            id: id,
+            name: name.value,
+            quantity: quantity.value,
+            price: price.value,
           };
           const result = await this.product.updateProduct(payload);
           result ? alert('商品更新成功') : alert('商品更新失敗');
