@@ -6,6 +6,7 @@ import { TransactionTypeService } from '../../service/TransactionType.js';
 import { BaseModule } from '../../class/BaseModule.js';
 import { AUTH_MANAGER } from '../../enum/auth.js';
 import { OrderService } from '../../service/Order.js';
+import { ORDER_PROCESSING } from '../../enum/status.js';
 
 window.addEventListener('load', () => {
   const body = document.querySelector('body');
@@ -29,7 +30,7 @@ class MainModule extends BaseModule {
     this.orderInfo = {
       memberId: this.memberId,
       address: '',
-      status: 1,
+      status: ORDER_PROCESSING,
       deliveryId: -1,
       transactionId: -1,
       products: [
@@ -72,15 +73,15 @@ class MainModule extends BaseModule {
           alert('會員編號異常');
           return;
         }
-
+        //新增訂單API
         const result = await this.order.addOrder(this.orderInfo);
         if (!result) {
           alert('訂單建立失敗');
           return;
         }
         alert('訂單已建立成功');
-        this.storage.clearCarts();
-        location.reload();
+        this.storage.clearCarts(); //清空購物車
+        location.reload(); //頁面更新
       }
     });
   }
