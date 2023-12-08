@@ -1,40 +1,72 @@
+/* 510171292 吳家驊 , 511172176 李則霖 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
 * {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background-color: #e0f4f4;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .form {
   background-color: white;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  max-width: 600px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   width: 100%;
-  box-sizing: border-box;
-  margin-top: 70px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  max-width: 450px;
+  transition: transform 0.3s ease-in-out;
 }
 
-.form h4 {
-  color: #333;
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 30px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+.form:hover {
+  transform: scale(1.02);
 }
 
 .form div {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* 确保标签和输入框之间有间隔 */
+}
+
+input[type="text"], input[type="submit"] {
+  border: 2px solid #b3e5fc;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 input[type="text"] {
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  width: calc(100% - 120px); /* 考虑标签宽度 */
-  box-sizing: border-box;
+  width: calc(100% - 120px); /* 考慮標籤寬度 */
+  margin-left: 10px;
+  transition: border-color 0.3s;
 }
+
+input[type="text"]:focus {
+  border-color: #29b6f6; /* 焦點時改變邊框顏色 */
+}
+
+input[type="submit"] {
+  background-color: #29b6f6;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+input[type="submit"]:hover {
+  background-color: #0077b6;
+  box-shadow: 0 2px 8px rgba(0, 119, 182, 0.4);
+}
+

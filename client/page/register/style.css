@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+body {
+  font-family: 'Noto Sans TC', sans-serif; /* 適合中文的字體 */
+  background-color: #e0f4f4; /* 淡水藍背景色 */
+  color: #333; /* 文字顏色 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+form h4 {
+  text-align: center;
+  color: #29b6f6; /* 標題顏色 */
+  margin-bottom: 20px;
+}
+
+form div {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+input[type="text"] {
+  border: 1px solid #b3e5fc;
+  border-radius: 4px;
+  padding: 8px;
+  width: calc(100% - 80px); /* 考慮標籤寬度 */
+  margin-left: 10px;
+}
+
+button, input[type="submit"] {
+  background-color: #29b6f6; /* 按鈕顏色 */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: #0077b6; /* 滑過時深藍色 */
+}
+
+.return {
+  background-color: #29b6f6; /* 按鈕顏色 */
+}
