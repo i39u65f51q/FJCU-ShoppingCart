@@ -58,7 +58,7 @@ export class BaseModule {
         <span class="order-page" style="cursor:pointer">訂單紀錄</span>
         <span class="member-page" style="cursor:pointer">編輯個人資料</span>        
         </nav>
-        <button class="logout" style="width:70px;height:25px; ">登出</button>
+        <button class="logout" style="width:70px; height:25px; border-radius: 10px;">登出</button>
       </div>
     <header>  
     `;
