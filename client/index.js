@@ -15,7 +15,7 @@ class AppModule {
     if (!auth) {
       window.location.href = './page/login/index.html';
     } else if (auth === AUTH_MANAGER) {
-      window.location.href = './page/order-manager/index.html';
+      window.location.href = './page/order/index.html';
     } else if (auth === AUTH_USER) {
       window.location.href = './page/main/index.html';
     } else {
