@@ -9,7 +9,34 @@
   </head>
   <body>
     <header class="header"></header>
-    <main>商品管理頁面</main>
+    <main>
+      <h4 class="page-title">商品管理</h4>
+      <div class="create-wrap">
+        <button class="button create">新增商品</button>
+      </div>
+      <div class="container"></div>
+    </main>
+    <div class="add-container">
+      <h4 class="title">新增商品</h4>
+      <div class="input-wrap">
+        <div class="name-wrap">
+          <label for="name">商品名稱：</label>
+          <input type="text" id="name" placeholder="商品名稱" />
+        </div>
+        <div class="price-wrap">
+          <label for="price">商品價格：</label>
+          <input type="number" id="price" min="0" placeholder="價格" />
+        </div>
+        <div class="quantity-wrap">
+          <label for="quantity">商品庫存：</label>
+          <input type="number" id="quantity" min="0" placeholder="庫存" />
+        </div>
+      </div>
+      <div class="button-wrap">
+        <button class="cancel">取消</button>
+        <button class="confirm">確認</button>
+      </div>
+    </div>
     <script src="./script.js" type="module"></script>
   </body>
 </html>
