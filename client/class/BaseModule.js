@@ -30,7 +30,7 @@ export class BaseModule {
   //管理員Header：編輯商品、修改訂單狀態
   renderManagerHeader() {
     const header = `
-    <header style="width:100%; display:flex; justify-content:space-between;align-items=center; padding: 1rem 2rem; height:50px; position:fixed; top:0; left:0; right:0;background-color:#677891;box-shadow:2px 3px 3px rgba(0,0,0,0.2);z-index:99">
+    <header style="width:100%; display:flex; justify-content:space-between;align-items=center; padding: 1rem 2rem; height:50px; position:fixed; top:0; left:0; right:0;background-color:#29b6f6;box-shadow:2px 3px 3px rgba(0,0,0,0.2);z-index:99">
       <div style="width:50%; ">
         <h2 style="text-align=center; font-size:1.2rem">BuyGo</h2>  
       </div>
@@ -58,7 +58,7 @@ export class BaseModule {
         <span class="order-page" style="cursor:pointer">訂單紀錄</span>
         <span class="member-page" style="cursor:pointer">編輯個人資料</span>        
         </nav>
-        <button class="logout" style="width:70px; height:25px; border-radius: 10px;">登出</button>
+        <button class="logout" style="width:70px; height:25px;">登出</button>
       </div>
     <header>  
     `;

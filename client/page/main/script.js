@@ -88,16 +88,15 @@ class MainModule extends BaseModule {
 
   //渲染產品資訊
   async renderProducts(container) {
-    const products = await this.product.getProducts();
-    this.products = products;
+    this.products = (await this.product.getProducts()).filter(p => !p.disabled); //不顯示disabled=1的商品
     const productContainer = container.querySelector('.products-container');
-    products.forEach(product => {
+    this.products.forEach(product => {
       productContainer.innerHTML += renderProductItem(product);
     });
     //點擊新增商品事件
     document.querySelectorAll('.add-btn').forEach((btn, index) => {
       btn.addEventListener('click', e => {
-        const item = products[index];
+        const item = this.products[index];
         let findIndex = -1;
         if (this.carts.length !== 0) {
           findIndex = this.carts.findIndex(c => c.id === item.id);
@@ -112,10 +111,10 @@ class MainModule extends BaseModule {
           }
         } else {
           this.carts.push({
-            id: products[index].id,
+            id: this.products[index].id,
             count: 1,
-            name: products[index].name,
-            per_price: products[index].price,
+            name: this.products[index].name,
+            per_price: this.products[index].price,
           });
         }
         this.storage.setCarts(this.carts);

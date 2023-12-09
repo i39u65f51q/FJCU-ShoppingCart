@@ -1,16 +1,18 @@
 //508062334 陳彥志
 import mysql, { FieldInfo, MysqlError } from 'mysql';
 import { SQLStatement } from 'sql-template-strings';
+import { env } from '../environment/env';
 
 export class SQL {
   private readonly mysql: mysql.Connection;
+
   constructor() {
     this.mysql = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: '1234',
-      database: 'buygo',
-      port: 3306,
+      host: env.sql.host,
+      user: env.sql.account,
+      password: env.sql.password,
+      database: env.sql.db,
+      port: env.sql.port,
     });
   }
 

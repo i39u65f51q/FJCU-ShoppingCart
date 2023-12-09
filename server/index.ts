@@ -8,6 +8,7 @@ import { OrderController } from './controller/Order.controller';
 import { OrderProductController } from './controller/OrderProduct.controller';
 import { ProductController } from './controller/Product.controller';
 import { DeliveryMethodController } from './controller/DeliveryMethod.controller';
+import { env } from './environment/env';
 
 function main(): void {
   const app: Express = express();
@@ -23,7 +24,7 @@ function main(): void {
   app.use(bodyParser.json()); //API Body封包解析
   app.use(cors(), router); //跨網域請求
 
-  app.listen(3000); //PORT
-  console.log('Server: run on port:3000');
+  app.listen(env.port); //PORT
+  console.log(`Server: run on port:${env.port}`);
 }
 main();

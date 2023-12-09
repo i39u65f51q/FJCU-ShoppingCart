@@ -7,7 +7,7 @@ export class ProductModel {
   constructor() {}
 
   public async getAll(): Promise<ProductDto[]> {
-    const sqlString: SQLStatement = sql`SELECT * FROM product WHERE disabled <> 1 `;
+    const sqlString: SQLStatement = sql`SELECT * FROM product `;
     const data: unknown[] | unknown = await new SQL().query(sqlString);
     if (!Array.isArray(data)) return [];
     return data.map((d: unknown) => new ProductDto(d));
@@ -21,19 +21,19 @@ export class ProductModel {
   }
 
   public async update(product: ProductDto): Promise<boolean> {
-    const sqlString: SQLStatement = sql`UPDATE buygo.product SET p_name = ${product.name}, quantity = ${product.quantity}, price = ${product.price} WHERE p_id = ${product.id};`;
+    const sqlString: SQLStatement = sql`UPDATE product SET p_name = ${product.name}, quantity = ${product.quantity}, price = ${product.price} WHERE p_id = ${product.id};`;
     const result: unknown[] | unknown = await new SQL().query(sqlString);
     return (result as any).affectedRows > 0 ? true : false;
   }
 
   public async updateQuantity(product: ProductDto): Promise<boolean> {
-    const sqlString: SQLStatement = sql`UPDATE buygo.product SET quantity = ${product.quantity} WHERE p_id = ${product.id};`;
+    const sqlString: SQLStatement = sql`UPDATE product SET quantity = ${product.quantity} WHERE p_id = ${product.id};`;
     const result: unknown[] | unknown = await new SQL().query(sqlString);
     return (result as any).affectedRows > 0 ? true : false;
   }
 
   public async delete(id: number): Promise<boolean> {
-    const sqlString: SQLStatement = sql`UPDATE buygo.product SET disabled = 1 WHERE p_id = ${id};`;
+    const sqlString: SQLStatement = sql`UPDATE product SET disabled = 1 WHERE p_id = ${id};`;
     const result: unknown[] | unknown = await new SQL().query(sqlString);
     return (result as any).affectedRows > 0 ? true : false;
   }

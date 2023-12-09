@@ -26,9 +26,9 @@ class ProductModule extends BaseModule {
   async renderProducts(body) {
     const container = body.querySelector('div.container');
     const products = await this.product.getProducts();
-    this.products = products;
+    this.products = products.filter(p => !p.disabled); //不顯示disabled=1的商品
 
-    products.forEach(p => {
+    this.products.forEach(p => {
       container.innerHTML += this.renderProduct(p);
     });
     this.updateEvent(container);
