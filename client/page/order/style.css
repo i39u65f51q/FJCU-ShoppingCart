@@ -5,16 +5,31 @@
   box-sizing: border-box;
   font-size: 14px;
 }
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14px; /* 基本字體大小 */
+  font-family: 'Noto Sans TC', sans-serif; /* 使用 Noto Sans TC 字體 */
+  color: #333; /* 基本字體顏色 */
+}
+
 h4 {
   text-align: center;
-  font-size: 16px;
+  font-size: 18px; /* 標題字體大小 */
+  font-weight: bold; /* 標題字體加粗 */
 }
+
 main {
   margin-top: 70px;
 }
+
 .padding {
   padding: 0.5rem;
 }
+
 .container {
   width: fit-content;
   display: flex;
@@ -37,51 +52,48 @@ main {
 }
 
 .order-item:hover {
-  transition: all 0.2s ease;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .order-item .title {
-  text-align: center;
-  border-bottom: 1px solid #eee;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 16px; /* 調整標題字體大小 */
 }
 
 .order-item .processing {
-  background-color: #ff674d;
-}
-.order-item .deliverying {
-  background-color: #6eb1f5;
-}
-.order-item .arrived {
-  background-color: #ebbd34;
-}
-.order-item .finished {
-  background-color: #8ae86f;
+  background-color: #ff674d; /* 處理中紅色背景 */
+  color: white; /* 文字顏色 */
 }
 
-.order-detail-wrap {
+.order-item .deliverying {
+  background-color: #6eb1f5; /* 運送中藍色背景 */
+  color: white;
+}
+
+.order-item .arrived {
+  background-color: #ebbd34; /* 已到貨黃色背景 */
+  color: white;
+}
+
+.order-item .finished {
+  background-color: #8ae86f; /* 已完成綠色背景 */
+  color: white;
+}
+
+.order-detail-wrap, .order-product-wrap, .order-result-wrap {
   border-bottom: 1px solid #eee;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.order-product-wrap {
-  border-bottom: 1px solid #eee;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.order-result-wrap {
-  text-align: right;
-}
+
 .cursor {
   cursor: pointer;
 }
+
 .cursor:hover {
-  background-color: #fff;
+  background-color: #fff; /* 滑過時背景色變化 */
 }
+
 dialog {
   margin: auto;
   width: 300px;
@@ -90,18 +102,20 @@ dialog {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 1rem;
 }
+
 dialog form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
+
 dialog form .button-wrap {
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
 }
-dialog form select,
-select > * {
+
+dialog form select, select > * {
   padding: 0.5rem;
 }
 
@@ -117,6 +131,7 @@ dialog form .button-wrap .dialog-cancel {
   background-color: red;
   color: #fff;
 }
+
 dialog form .button-wrap .dialog-confirm {
   background-color: rgb(47, 142, 16);
   color: #fff;
