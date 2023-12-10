@@ -23,7 +23,7 @@ export class OrderModel {
   }
 
   public async insert(order: OrderDto): Promise<number> {
-    const sqlString: SQLStatement = sql`INSERT INTO new_schema.order (m_id, Address, Status, deliveryMethodId, transactionTypeId) VALUES (${order.memberId}, ${order.address}, 1 , ${order.deliveryId}, ${order.transactionId});`;
+    const sqlString: SQLStatement = sql`INSERT INTO new_schema.order (m_id, Address, Status, deliveryMethodId, transactionTypeId) VALUES (${order.memberId}, ${order.address}, ${order.status} , ${order.deliveryId}, ${order.transactionId});`;
     const result: unknown | unknown[] = await new SQL().query(sqlString);
     const insertId: number = (result as any).insertId;
     return insertId as number;
