@@ -393,7 +393,7 @@ dialog form .button-wrap .dialog-confirm {
 .container {
   width: fit-content;
   display: flex;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
   gap: 1rem;
   margin: 0 auto;
