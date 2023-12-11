@@ -125,6 +125,7 @@ main input[type='submit']:hover {
   margin-top: 50px; /* 增加上邊距 */
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 1rem;
   padding: 1rem;
   width: 70%;
@@ -190,6 +191,8 @@ input[type='submit']:not(.header *):hover {
   justify-content: center;
   height: 100%;
   gap: 0.3rem;
+  margin: 15px;
+  width: auto;
 }
 
 .product-item {
@@ -222,7 +225,7 @@ input[type='submit']:not(.header *):hover {
 .container {
   width: fit-content;
   display: flex;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
   gap: 1.2rem;
   margin: 0 auto;
