@@ -74,3 +74,19 @@ body {
     color: #555;
   }
   
+  /* 統一按鈕樣式，除了頭部按鈕 */
+button:not(.header *), 
+input[type="submit"]:not(.header *) {
+  background-color: #29b6f6; /* 水藍色背景 */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:not(.header *):hover, 
+input[type="submit"]:not(.header *):hover {
+  background-color: #0077b6; /* 深藍色 */
+}
