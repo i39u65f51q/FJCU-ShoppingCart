@@ -124,8 +124,8 @@ class MainModule extends BaseModule {
     //單一商品資訊
     function renderProductItem(product) {
       const content = `
-    <div class="product-item" style="width: 300px; height: auto; border: 1px solid #eee; border-radius:6px; box-shadow:0px 3px 3px rgba(0,0,0,0.5); overflow:hidden;">
-      <div style="display: block; width: 100%; height: 120px; background-color: #eee; display:flex; align-items:center; justify-content:center;">
+    <div class="product-item" >
+      <div id ="img">
         <span style="color:#aaa;">${product.name} 圖片</spa>
       </div>
       <div style="width: 100%; display: flex; flex-direction: column; padding: 0.5rem">

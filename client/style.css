@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+body {
+  font-family: 'Noto Sans TC', sans-serif; /* 使用適合中文的字體 */
+  background-color: #e0f4f4; /* 淡水藍背景 */
+  color: #333; /* 深色文字提高可讀性 */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 7%;
+  height: 100vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14px; /* 基本字體大小 */
+  font-family: 'Noto Sans TC', sans-serif; /* 使用 Noto Sans TC 字體 */
+  color: #333; /* 基本字體顏色 */
+}
+
+/*login & register*/
+.form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 340px;
+  transition: all 0.3s ease;
+}
+
+.form:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.form .flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form input[type='text'],
+input[type='submit'],
+.register,
+.return {
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+
+.form input[type='text'] {
+  border: 2px solid #b3e5fc;
+  padding: 10px;
+  width: 70%;
+  outline: none;
+}
+
+.form input[type='text']:focus {
+  border-color: #29b6f6;
+  box-shadow: 0 0 8px rgba(41, 182, 246, 0.6);
+}
+
+.form input[type='submit'],
+.form .register,
+.form .return,
+.form .summit {
+  background-color: #29b6f6; /* 鮮豔水藍色按鈕 */
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+}
+
+.form input[type='submit']:hover,
+.form .register:hover,
+.form .return:hover,
+.form .summit:hover {
+  background-color: #0086c3; /* 按鈕滑過效果 */
+  box-shadow: 0 2px 6px rgba(0, 134, 195, 0.4);
+}
+
+.form h4 {
+  color: #0077b6; /* 標題使用更深的藍色 */
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form span {
+  color: #555;
+}
+
+/*main*/
+main {
+  font-family: 'Noto Sans TC', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 只針對<main>內的按鈕應用樣式 */
+main button,
+main input[type='submit'] {
+  background-color: #29b6f6; /* 水藍色背景 */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px; /* 圓角 */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+main button:hover,
+main input[type='submit']:hover {
+  background-color: #0077b6; /* 深藍色 */
+}
+
+/* 商品容器樣式 */
+.products-container {
+  margin-top: 50px; /* 增加上邊距 */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  width: 70%;
+}
+
+/* 購物車容器樣式 */
+.carts-container {
+  width: 30%;
+  height: calc(100% - 50px);
+  position: fixed;
+  right: 0;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffffcc;
+  border-left: 1px solid #eee;
+}
+
+.carts-wrap {
+  min-height: 60%;
+  max-height: 60%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.carts-container h4 {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #eee;
+}
+
+/* 統一按鈕樣式，除了頭部按鈕 */
+button:not(.header *),
+input[type='submit']:not(.header *) {
+  background-color: #29b6f6; /* 水藍色背景 */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:not(.header *):hover,
+input[type='submit']:not(.header *):hover {
+  background-color: #0077b6; /* 深藍色 */
+}
+
+.payment-wrap #header {
+  width: 100%;
+  height: 50px;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-wrap #order {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 0.3rem;
+}
+
+.product-item {
+  width: 300px;
+  height: auto;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
+  border-color: #d7d7d7;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.product-item #img {
+  display: block;
+  width: 100%;
+  height: 120px;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*order*/
+
+.padding {
+  padding: 0.5rem;
+}
+
+.container {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.order-item {
+  min-width: 600px;
+  background-color: #e2e2e2;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.order-item:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.order-item .title {
+  font-size: 16px; /* 調整標題字體大小 */
+}
+
+.order-item .processing {
+  background-color: #ff674d; /* 處理中紅色背景 */
+  color: white; /* 文字顏色 */
+}
+
+.order-item .deliverying {
+  background-color: #6eb1f5; /* 運送中藍色背景 */
+  color: white;
+}
+
+.order-item .arrived {
+  background-color: #ebbd34; /* 已到貨黃色背景 */
+  color: white;
+}
+
+.order-item .finished {
+  background-color: #8ae86f; /* 已完成綠色背景 */
+  color: white;
+}
+
+.order-detail-wrap,
+.order-product-wrap,
+.order-result-wrap {
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.cursor:hover {
+  background-color: #fff; /* 滑過時背景色變化 */
+}
+
+dialog {
+  margin: auto;
+  width: 300px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+}
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+dialog form .button-wrap {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+dialog form select,
+select > * {
+  padding: 0.5rem;
+}
+
+dialog form .button-wrap button {
+  width: 50px;
+  border: none;
+  border-radius: 3px;
+  padding: 0.2rem;
+  cursor: pointer;
+}
+
+dialog form .button-wrap .dialog-cancel {
+  background-color: red;
+  color: #fff;
+}
+
+dialog form .button-wrap .dialog-confirm {
+  background-color: rgb(47, 142, 16);
+  color: #fff;
+}
+
+.status-hint {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/*product*/
+/* 510171292 吳家驊 , 511172176 李則霖 */
+
+.create-wrap {
+  margin: 10px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.create-wrap .create {
+  background-color: #6eb1f5;
+  color: #fff;
+}
+
+.container {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 auto;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #cacaca;
+  background-color: #d7d7d7;
+  border-radius: 3px;
+  padding: 1rem;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+.item input {
+  width: 70px;
+}
+.item .button-wrap {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.item .button-wrap .confirm {
+  background-color: #79c464;
+  color: #fff;
+}
+.item .button-wrap .cancel {
+  background-color: #ebbd34;
+  color: #fff;
+}
+
+.item .button-wrap .delete {
+  background-color: #ff674d;
+  color: #fff;
+}
+
+.add-container {
+  position: fixed;
+  right: 0;
+  top: 130px;
+  border: 1px solid #ddd;
+  max-width: 300px;
+  min-width: 300px;
+  transform: translateX(400px);
+  transition: all 1s ease;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 3px;
+  background-color: #ddd;
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.7);
+}
+
+.active {
+  transform: translateX(0);
+}
+
+.add-container .input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.add-container .button-wrap {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.add-container .cancel {
+  background-color: #ff674d;
+}
+
+.add-container .confirm {
+  background-color: #79c464;
+}
