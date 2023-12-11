@@ -219,7 +219,7 @@ input[type='submit']:not(.header *):hover {
 .payment-wrap #order {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100%;
   gap: 0.3rem;
   margin: 15px;
