@@ -9,7 +9,7 @@
     "sql-template-strings": "^2.2.2"
   },
   "scripts": {
-    "start": "live-server --open=client/index.html --watch=client/index.html --port=3200",
+    "client": "live-server --open=client/index.html --watch=client/index.html --port=3200",
     "server": "tsx --watch server/index.ts"
   },
   "type": "module",

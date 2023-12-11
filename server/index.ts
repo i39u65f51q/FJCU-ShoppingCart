@@ -1,7 +1,6 @@
 //508062334 陳彥志
 import express, { Router, Express } from 'express';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import { TransactionTypeController } from './controller/TransactionType.controller';
 import { MemberController } from './controller/Member.controller';
 import { OrderController } from './controller/Order.controller';
@@ -21,7 +20,7 @@ function main(): void {
   new ProductController(router); //商品
   new DeliveryMethodController(router); //運送方式
 
-  app.use(bodyParser.json()); //API Body封包解析
+  app.use(express.json()); //API Body封包解析
   app.use(cors(), router); //跨網域請求
 
   app.listen(env.port); //PORT
