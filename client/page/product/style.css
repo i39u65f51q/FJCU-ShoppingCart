@@ -1,10 +1,15 @@
 /* 510171292 吳家驊 , 511172176 李則霖 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 14px; /* 基本字體大小 */
+  font-family: 'Noto Sans TC', sans-serif; /* 使用 Noto Sans TC 字體 */
+  color: #333; /* 基本字體顏色 */
 }
+
 h4 {
   text-align: center;
   font-size: 16px;

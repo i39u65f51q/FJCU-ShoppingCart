@@ -16,6 +16,16 @@ export class SQL {
     });
   }
 
+  /*constructor() {
+    this.mysql = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "1234",
+      database: "new_schema",
+      port: 3306,
+    });
+  }*/
+
   public query(query: SQLStatement): Promise<unknown | unknown[]> {
     return new Promise((resolve, reject) => {
       this.mysql.connect((err: MysqlError) => {

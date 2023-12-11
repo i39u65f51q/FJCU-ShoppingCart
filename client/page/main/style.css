@@ -5,8 +5,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 14px;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 14px; /* 基本字體大小 */
+  font-family: 'Noto Sans TC', sans-serif; /* 使用 Noto Sans TC 字體 */
+  color: #333; /* 基本字體顏色 */
 }
 
 body {
@@ -48,3 +49,19 @@ main input[type="submit"]:hover {
   border-left: 1px solid #eee;
 }
 
+/* 統一按鈕樣式，除了頭部按鈕 */
+button:not(.header *), 
+input[type="submit"]:not(.header *) {
+  background-color: #29b6f6; /* 水藍色背景 */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:not(.header *):hover, 
+input[type="submit"]:not(.header *):hover {
+  background-color: #0077b6; /* 深藍色 */
+}
