@@ -250,12 +250,21 @@ input[type='submit']:not(.header *):hover {
 /*cart item*/
 .carts-item {
   margin : 0 auto;
-  width: 90%;
+  width: 95%;
   padding: 0.5rem;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   border-bottom: 1px solid #ddd;
+ 
+}
+.carts-item span{
+  width:20%; flex-wrap: wrap;
+}
+
+.carts-item #action{
+  display: flex; gap: 0.5rem;justify-content: flex-end;
+  
 }
 
 /*order*/

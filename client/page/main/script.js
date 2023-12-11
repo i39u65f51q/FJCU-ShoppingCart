@@ -192,9 +192,12 @@ class MainModule extends BaseModule {
     function renderCartItem(cartItem) {
       const content = `
     <div class="carts-item">
-      <span>商品名稱 : ${cartItem.name}</span><span>數量：${cartItem.count}</span>
-      <span>總價格：${cartItem.per_price * cartItem.count}</span>
-      <div style="display: flex; gap: 0.5rem;float:right;">
+      
+        <span>商品名稱 : ${cartItem.name}</span>
+        <span>數量：${cartItem.count}</span>
+        <span>總價格：${cartItem.per_price * cartItem.count}</span>
+     
+      <div id="action">
         <div><button class="plus">新增</button></div>
         <div><button class="minus">減少</button></div>
       </div>
