@@ -3,9 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
 
 body {
-  font-family: 'Noto Sans TC', sans-serif; /* 使用適合中文的字體 */
-  background-color: #e0f4f4; /* 淡水藍背景 */
-  color: #333; /* 深色文字提高可讀性 */
+  font-family: 'Noto Sans TC', sans-serif;
+  /* 使用適合中文的字體 */
+  background-color: #e0f4f4;
+  /* 淡水藍背景 */
+  color: #333;
+  /* 深色文字提高可讀性 */
   margin: 0;
   display: flex;
   justify-content: center;
@@ -18,9 +21,28 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 14px; /* 基本字體大小 */
-  font-family: 'Noto Sans TC', sans-serif; /* 使用 Noto Sans TC 字體 */
-  color: #333; /* 基本字體顏色 */
+  font-size: 14px;
+  /* 基本字體大小 */
+  font-family: 'Noto Sans TC', sans-serif;
+  /* 使用 Noto Sans TC 字體 */
+  color: #333;
+  /* 基本字體顏色 */
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items=center;
+  padding: 1rem 2rem;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #29b6f6;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.2);
+  z-index: 99
 }
 
 /*login & register*/
@@ -68,7 +90,8 @@ input[type='submit'],
 .form .register,
 .form .return,
 .form .summit {
-  background-color: #29b6f6; /* 鮮豔水藍色按鈕 */
+  background-color: #29b6f6;
+  /* 鮮豔水藍色按鈕 */
   color: white;
   border: none;
   margin-top: 10px;
@@ -81,12 +104,14 @@ input[type='submit'],
 .form .register:hover,
 .form .return:hover,
 .form .summit:hover {
-  background-color: #0086c3; /* 按鈕滑過效果 */
+  background-color: #0086c3;
+  /* 按鈕滑過效果 */
   box-shadow: 0 2px 6px rgba(0, 134, 195, 0.4);
 }
 
 .form h4 {
-  color: #0077b6; /* 標題使用更深的藍色 */
+  color: #0077b6;
+  /* 標題使用更深的藍色 */
   margin-bottom: 25px;
   text-align: center;
 }
@@ -106,18 +131,21 @@ main {
 /* 只針對<main>內的按鈕應用樣式 */
 main button,
 main input[type='submit'] {
-  background-color: #29b6f6; /* 水藍色背景 */
+  background-color: #29b6f6;
+  /* 水藍色背景 */
   color: white;
   border: none;
   padding: 10px 15px;
-  border-radius: 5px; /* 圓角 */
+  border-radius: 5px;
+  /* 圓角 */
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 main button:hover,
 main input[type='submit']:hover {
-  background-color: #0077b6; /* 深藍色 */
+  background-color: #0077b6;
+  /* 深藍色 */
 }
 
 /* 商品容器樣式 */
@@ -162,7 +190,8 @@ main input[type='submit']:hover {
 /* 統一按鈕樣式，除了頭部按鈕 */
 button:not(.header *),
 input[type='submit']:not(.header *) {
-  background-color: #29b6f6; /* 水藍色背景 */
+  background-color: #29b6f6;
+  /* 水藍色背景 */
   color: white;
   border: none;
   padding: 10px 15px;
@@ -173,7 +202,8 @@ input[type='submit']:not(.header *) {
 
 button:not(.header *):hover,
 input[type='submit']:not(.header *):hover {
-  background-color: #0077b6; /* 深藍色 */
+  background-color: #0077b6;
+  /* 深藍色 */
 }
 
 .payment-wrap #header {
@@ -248,26 +278,32 @@ input[type='submit']:not(.header *):hover {
 }
 
 .order-item .title {
-  font-size: 16px; /* 調整標題字體大小 */
+  font-size: 16px;
+  /* 調整標題字體大小 */
 }
 
 .order-item .processing {
-  background-color: #ff674d; /* 處理中紅色背景 */
-  color: white; /* 文字顏色 */
+  background-color: #ff674d;
+  /* 處理中紅色背景 */
+  color: white;
+  /* 文字顏色 */
 }
 
 .order-item .deliverying {
-  background-color: #6eb1f5; /* 運送中藍色背景 */
+  background-color: #6eb1f5;
+  /* 運送中藍色背景 */
   color: white;
 }
 
 .order-item .arrived {
-  background-color: #ebbd34; /* 已到貨黃色背景 */
+  background-color: #ebbd34;
+  /* 已到貨黃色背景 */
   color: white;
 }
 
 .order-item .finished {
-  background-color: #8ae86f; /* 已完成綠色背景 */
+  background-color: #8ae86f;
+  /* 已完成綠色背景 */
   color: white;
 }
 
@@ -285,7 +321,8 @@ input[type='submit']:not(.header *):hover {
 }
 
 .cursor:hover {
-  background-color: #fff; /* 滑過時背景色變化 */
+  background-color: #fff;
+  /* 滑過時背景色變化 */
 }
 
 dialog {
@@ -310,7 +347,7 @@ dialog form .button-wrap {
 }
 
 dialog form select,
-select > * {
+select>* {
   padding: 0.5rem;
 }
 
@@ -371,9 +408,11 @@ dialog form .button-wrap .dialog-confirm {
   padding: 1rem;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
+
 .item input {
   width: 70px;
 }
+
 .item .button-wrap {
   display: flex;
   gap: 0.5rem;
@@ -383,6 +422,7 @@ dialog form .button-wrap .dialog-confirm {
   background-color: #79c464;
   color: #fff;
 }
+
 .item .button-wrap .cancel {
   background-color: #ebbd34;
   color: #fff;
@@ -420,6 +460,7 @@ dialog form .button-wrap .dialog-confirm {
   flex-direction: column;
   gap: 0.5rem;
 }
+
 .add-container .button-wrap {
   display: flex;
   justify-content: flex-end;
