@@ -196,7 +196,7 @@ input[type='submit']:not(.header *):hover {
 }
 
 .product-item {
-  width: 300px;
+  width: 30%;
   height: auto;
   border: 1px solid #eee;
   border-radius: 6px;
