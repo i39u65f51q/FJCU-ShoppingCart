@@ -191,19 +191,12 @@ class MainModule extends BaseModule {
     //單一購物車資訊
     function renderCartItem(cartItem) {
       const content = `
-    <div class="carts-item"
-      style="
-        width: 100%;
-        padding: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;      
-        border-bottom: 1px solid #ddd;
-    ">
+    <div class="carts-item">
       <span>商品名稱 : ${cartItem.name}</span><span>數量：${cartItem.count}</span>
       <span>總價格：${cartItem.per_price * cartItem.count}</span>
-      <div style="display: flex; gap: 0.5rem">
-        <button class="plus">新增</button><button class="minus">減少</button>
+      <div style="display: flex; gap: 0.5rem;float:right;">
+        <div><button class="plus">新增</button></div>
+        <div><button class="minus">減少</button></div>
       </div>
     </div>
     `;
