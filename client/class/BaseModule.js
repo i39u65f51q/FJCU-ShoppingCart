@@ -35,7 +35,7 @@ export class BaseModule {
         <h2 style="text-align=center; font-size:1.2rem">BuyGo</h2>  
       </div>
       <div style="width:50%; display:flex; gap:1rem; justify-content:flex-end">  
-        <nav style="display:flex; align-items:center;gap:1rem;">
+        <nav style="display:flex; align-items:center;gap:1rem;position: sticky;">
           <span class="order-page" style="cursor:pointer">訂單管理</span>
           <span class="product-page" style="cursor:pointer">商品管理</span>
         </nav>
